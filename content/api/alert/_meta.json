@@ -1,0 +1,5 @@
+{
+  "get-alerts": "Listar Alertas",
+  "get-alert-events": "Eventos SSE",
+  "update-alert-as-viewed": "Marcar como Visto"
+}

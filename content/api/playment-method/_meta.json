@@ -1,0 +1,6 @@
+{
+  "register-playment-method": "Crear Método de Pago",
+  "get-playment-methods": "Listar Métodos de Pago",
+  "get-playment-method-by-id": "Obtener Método de Pago",
+  "update-playment-method": "Actualizar Método de Pago"
+}

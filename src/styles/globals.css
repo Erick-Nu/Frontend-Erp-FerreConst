@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --nextra-primary-hue: 210deg;
+}
+
+.dark {
+  --nextra-primary-hue: 210deg;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Code block improvements */
+pre {
+  border-radius: 0.5rem;
+}
+
+/* Endpoint method badges */
+.method-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.method-get {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.method-post {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.method-put {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.method-patch {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.method-delete {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.dark .method-get {
+  background-color: #052e16;
+  color: #86efac;
+}
+
+.dark .method-post {
+  background-color: #1e3a5f;
+  color: #93c5fd;
+}
+
+.dark .method-put {
+  background-color: #451a03;
+  color: #fde68a;
+}
+
+.dark .method-patch {
+  background-color: #451a03;
+  color: #fde68a;
+}
+
+.dark .method-delete {
+  background-color: #450a0a;
+  color: #fca5a5;
+}

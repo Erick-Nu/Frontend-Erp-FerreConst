@@ -1,0 +1,235 @@
+# Crear Producto
+
+> Crea un nuevo producto en el catálogo de la empresa.
+
+## OpenAPI
+
+```yaml /openapi.yaml post /products
+openapi: 3.1.0
+info:
+  title: ESNT Backend Ferreteria API
+  version: 1.0.0
+paths:
+  /products:
+    post:
+      summary: Crear producto
+      description: Registra un nuevo producto para la empresa del usuario autenticado
+      operationId: createProduct
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProductRequest'
+            example:
+              prdtoemid: "4ff4db6b-f18f-4ecd-83b3-b997fa77a01e"
+              prdtoctgriaid: "85cdca30-3008-466b-b896-52d588cdda10"
+              prdtomrcid: "5d2f2f91-e1d9-4f3f-b2ad-35f54f9500b9"
+              prdtoprovid: "a052ef32-3c4b-41da-871a-dfec99d8afa3"
+              prdtomdiaid: "7f4f7a99-f7dc-4b10-9326-9e4ec8300e89"
+              prdtocodigo: "PRD-0001"
+              prdtonombre: "Taladro Inalámbrico 20V"
+              prdtopreciocompra: 120.5
+              prdtoprecioventa: 165.99
+              prdtostockminimo: 5
+              prdtostockmaximo: 50
+      responses:
+        '201':
+          description: Producto creado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductResponse'
+        '401':
+          description: Token inválido o ausente
+        '409':
+          description: Producto duplicado
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    CreateProductRequest:
+      type: object
+      required:
+        - prdtoemid
+        - prdtoctgriaid
+        - prdtomrcid
+        - prdtoprovid
+        - prdtomdiaid
+        - prdtocodigo
+        - prdtonombre
+        - prdtopreciocompra
+        - prdtoprecioventa
+        - prdtostockminimo
+        - prdtostockmaximo
+      properties:
+        prdtoemid:
+          type: string
+          description: ID de la empresa
+        prdtoctgriaid:
+          type: string
+          description: ID de la categoría
+        prdtomrcid:
+          type: string
+          description: ID de la marca
+        prdtoprovid:
+          type: string
+          description: ID del proveedor
+        prdtomdiaid:
+          type: string
+          description: ID de la medida
+        prdtocodigo:
+          type: string
+          description: Código único del producto
+        prdtonombre:
+          type: string
+          description: Nombre del producto
+        prdtopreciocompra:
+          type: number
+          description: Precio de compra
+        prdtoprecioventa:
+          type: number
+          description: Precio de venta
+        prdtostockminimo:
+          type: number
+          description: Stock mínimo permitido
+        prdtostockmaximo:
+          type: number
+          description: Stock máximo permitido
+    ProductResponse:
+      type: object
+      properties:
+        prdtoid:
+          type: string
+        prdtoemid:
+          type: string
+        categoria:
+          type: object
+          properties:
+            ctgriaid:
+              type: string
+            ctgnombre:
+              type: string
+            ctgriadescripcion:
+              type: string
+        marca:
+          type: object
+          properties:
+            mrcid:
+              type: string
+            mrcnombre:
+              type: string
+        proveedor:
+          type: object
+          properties:
+            provid:
+              type: string
+            provnombre:
+              type: string
+        medida:
+          type: object
+          properties:
+            mdiaid:
+              type: string
+            mdianombre:
+              type: string
+            mdiaabreviatura:
+              type: string
+        prdtocodigo:
+          type: string
+        prdtonombre:
+          type: string
+        prdtopreciocompra:
+          type: number
+        prdtoprecioventa:
+          type: number
+        prdtostockminimo:
+          type: number
+        prdtostockmaximo:
+          type: number
+        prdtoimagen:
+          type: string
+        prdtofchregistro:
+          type: string
+          format: date-time
+        prdtoestado:
+          type: string
+          enum: [activo, inactivo, eliminado]
+```
+```
+
+## Ejemplos
+
+### Crear producto sin imagen
+
+```bash
+curl -X POST http://localhost:3000/products \
+  -H "Authorization: Bearer <token>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "prdtoemid": "4ff4db6b-f18f-4ecd-83b3-b997fa77a01e",
+    "prdtoctgriaid": "85cdca30-3008-466b-b896-52d588cdda10",
+    "prdtomrcid": "5d2f2f91-e1d9-4f3f-b2ad-35f54f9500b9",
+    "prdtoprovid": "a052ef32-3c4b-41da-871a-dfec99d8afa3",
+    "prdtomdiaid": "7f4f7a99-f7dc-4b10-9326-9e4ec8300e89",
+    "prdtocodigo": "PRD-0001",
+    "prdtonombre": "Taladro Inalámbrico 20V",
+    "prdtopreciocompra": 120.5,
+    "prdtoprecioventa": 165.99,
+    "prdtostockminimo": 5,
+    "prdtostockmaximo": 50
+  }'
+```
+
+### Crear producto con imagen
+
+```bash
+curl -X POST http://localhost:3000/products \
+  -H "Authorization: Bearer <token>" \
+  -F "imagen=@producto.png" \
+  -F "prdtoemid=4ff4db6b-f18f-4ecd-83b3-b997fa77a01e" \
+  -F "prdtoctgriaid=85cdca30-3008-466b-b896-52d588cdda10" \
+  -F "prdtomrcid=5d2f2f91-e1d9-4f3f-b2ad-35f54f9500b9" \
+  -F "prdtoprovid=a052ef32-3c4b-41da-871a-dfec99d8afa3" \
+  -F "prdtomdiaid=7f4f7a99-f7dc-4b10-9326-9e4ec8300e89" \
+  -F "prdtocodigo=PRD-0001" \
+  -F "prdtonombre=Taladro Inalámbrico 20V" \
+  -F "prdtopreciocompra=120.5" \
+  -F "prdtoprecioventa=165.99" \
+  -F "prdtostockminimo=5" \
+  -F "prdtostockmaximo=50"
+```
+
+## Reglas de Negocio
+
+- Solo permite crear productos en la misma empresa del usuario autenticado
+- La empresa del usuario debe estar en estado `activo`
+- El usuario debe estar en estado `activo`
+- Roles permitidos: `jefe` o `empleado`
+- La categoría, marca, proveedor y medida deben existir en la misma empresa
+- El código del producto debe ser único dentro de la empresa
+- El nombre del producto debe ser único dentro de la empresa
+- Imagen: formatos permitidos `.png`, `.jpg`, máximo 5MB
+- Si no se envía imagen, se usa imagen por defecto
+
+## Errores
+
+| Código | Mensaje | Descripción |
+|--------|---------|-------------|
+| 401 | Unauthorized | Token inválido o ausente |
+| 400 | Company id is required | Empresa no proporcionada |
+| 400 | Product code is required | Código no proporcionado |
+| 400 | Product name is required | Nombre no proporcionado |
+| 409 | Product already exists with that code | Código duplicado |
+| 409 | Product already exists with that name | Nombre duplicado |
+| 404 | Product category does not exist | Categoría no encontrada |
+| 404 | Product brand does not exist | Marca no encontrada |
+| 404 | Product proveedor does not exist | Proveedor no encontrado |
+| 404 | Product medida does not exist | Medida no encontrada |
+| 403 | User cannot access another company | Acceso cruzado no permitido |
+| 403 | User is not jefe or empleado | Rol insuficiente |

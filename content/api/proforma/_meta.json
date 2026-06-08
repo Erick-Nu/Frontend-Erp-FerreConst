@@ -1,0 +1,9 @@
+{
+  "register-proforma": "Crear Proforma",
+  "get-proformas": "Listar Proformas",
+  "get-proforma-by-id": "Obtener Proforma",
+  "get-proforma-pdf": "Obtener PDF",
+  "replace-proforma": "Reemplazar Proforma",
+  "pay-proforma": "Pagar Proforma",
+  "cancel-proforma": "Anular Proforma"
+}

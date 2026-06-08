@@ -1,0 +1,6 @@
+{
+  "register-brand": "Crear Marca",
+  "get-brands": "Listar Marcas",
+  "get-brand-by-id": "Obtener Marca",
+  "update-brand": "Actualizar Marca"
+}

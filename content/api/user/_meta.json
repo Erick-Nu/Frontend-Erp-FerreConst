@@ -1,0 +1,8 @@
+{
+  "register-user": "Crear Usuario",
+  "get-users": "Listar Usuarios",
+  "get-user-by-id": "Obtener Usuario",
+  "update-user": "Actualizar Usuario",
+  "update-user-password": "Cambiar Contraseña",
+  "update-user-status": "Cambiar Estado"
+}

@@ -1,0 +1,106 @@
+# Refresh Session
+
+> Renueva tu access token usando un refresh token válido.
+
+## OpenAPI
+
+```yaml /openapi.yaml post /auth/refresh
+openapi: 3.1.0
+info:
+  title: ESNT Backend Ferreteria API
+  version: 1.0.0
+paths:
+  /auth/refresh:
+    post:
+      summary: Renovar sesión
+      description: Genera un nuevo access token y refresh token
+      operationId: refreshSession
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshRequest'
+            example:
+              refreshToken: "a1b2c3d4e5f6..."
+      responses:
+        '200':
+          description: Sesión renovada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RefreshResponse'
+        '401':
+          description: Refresh token inválido o expirado
+components:
+  schemas:
+    RefreshRequest:
+      type: object
+      required:
+        - refreshToken
+      properties:
+        refreshToken:
+          type: string
+          description: Refresh token actual
+    RefreshResponse:
+      type: object
+      properties:
+        accessToken:
+          type: string
+          description: Nuevo JWT access token
+        refreshToken:
+          type: string
+          description: Nuevo refresh token
+```
+```
+
+## Ejemplos
+
+### Renovar sesión
+
+```bash
+curl -X POST http://localhost:3000/auth/refresh \
+  -H "Content-Type: application/json" \
+  -d '{
+    "refreshToken": "a1b2c3d4e5f6..."
+  }'
+```
+
+### Renovar y actualizar token
+
+```bash
+NEW_TOKENS=$(curl -s -X POST http://localhost:3000/auth/refresh \
+  -H "Content-Type: application/json" \
+  -d "{
+    \"refreshToken\": \"$REFRESH_TOKEN\"
+  }")
+
+NEW_ACCESS=$(echo $NEW_TOKENS | jq -r '.accessToken')
+NEW_REFRESH=$(echo $NEW_TOKENS | jq -r '.refreshToken')
+```
+
+## Reglas de Negocio
+
+- El refresh token debe existir en la base de datos
+- El refresh token no debe haber sido revocado
+- El refresh token no debe haber expirado (7 días por defecto)
+- El usuario debe estar en estado `activo`
+- La empresa debe estar en estado `activo`
+- Al renovar, el refresh token anterior se revoca automáticamente
+
+## Errores
+
+| Código | Mensaje | Descripción |
+|--------|---------|-------------|
+| 401 | Unauthorized | Refresh token inválido, revocado o expirado |
+| 401 | User is inactive | Usuario en estado inactivo |
+| 401 | Company is inactive | Empresa en estado inactivo |
+
+## Flujo de Renovación
+
+```
+1. Access token expira (401 en request)
+2. Envía refresh token a /auth/refresh
+3. Obtiene nuevos tokens
+4. Reintenta request original con nuevo access token
+```

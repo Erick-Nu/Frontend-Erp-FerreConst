@@ -1,0 +1,7 @@
+{
+  "register-stock": "Registrar Stock",
+  "get-stocks": "Listar Stock",
+  "get-stocks-by-company": "Stock por Empresa",
+  "get-stock-by-id": "Obtener Stock",
+  "update-stock": "Actualizar Stock"
+}
