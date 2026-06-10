@@ -1,75 +1,26 @@
-import { Footer, Layout, Navbar } from 'nextra-theme-docs'
-import { Head } from 'nextra/components'
-import { getPageMap } from 'nextra/page-map'
-import 'nextra-theme-docs/style.css'
+import type { Metadata } from 'next'
+import { AppShell } from '@/components/AppShell'
+import { getMetadataBase } from '@/config/server-env'
 import '../styles/globals.css'
 
-export const metadata = {
+export const metadata: Metadata = {
   title: {
-    default: 'ESNT Ferreteria Documentation',
-    template: '%s – ESNT Ferreteria Docs',
+    default: 'BaaS Ferreconst Docs',
+    template: '%s | BaaS Ferreconst Docs',
   },
-  description: 'Documentación de la API REST del sistema de ferretería ESNT',
+  description: 'Documentacion de la API REST del sistema de ferreteria ESNT',
+  metadataBase: getMetadataBase(),
 }
 
-const navbar = (
-  <Navbar
-    logo={
-      <span style={{ fontWeight: 800 }}>
-        ESNT Ferreteria Docs
-      </span>
-    }
-    projectLink="https://github.com/esnt/esnt-backend-ferreteria"
-  />
-)
-
-const footer = (
-  <Footer>
-    {new Date().getFullYear()} © ESNT Ferreteria. Documentación generada con Nextra
-  </Footer>
-)
-
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
-    <html lang="es" dir="ltr" suppressHydrationWarning>
-      <Head
-        faviconGlyph="🔧"
-        color={{
-          hue: 210,
-          saturation: 100,
-          lightness: { light: 45, dark: 55 }
-        }}
-      >
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta httpEquiv="Content-Language" content="es" />
-        <meta
-          name="description"
-          content="Documentación de la API REST del sistema de ferretería ESNT"
-        />
-        <meta
-          name="og:description"
-          content="Documentación de la API REST del sistema de ferretería ESNT"
-        />
-        <meta name="og:title" content="ESNT Ferreteria Documentation" />
-        <meta name="apple-mobile-web-app-title" content="ESNT Ferreteria Docs" />
-      </Head>
+    <html lang="es">
       <body>
-        <Layout
-          navbar={navbar}
-          pageMap={await getPageMap()}
-          docsRepositoryBase="https://github.com/esnt/esnt-frontend-doc-ferreteria"
-          footer={footer}
-          sidebar={{ defaultMenuCollapseLevel: 1, toggleButton: true }}
-          toc={{ backToTop: true }}
-          editLink="Editar esta página en GitHub"
-          feedback={{ content: '¿Preguntas? Danos feedback →', labels: 'feedback' }}
-        >
-          {children}
-        </Layout>
+        <AppShell>{children}</AppShell>
       </body>
     </html>
   )
