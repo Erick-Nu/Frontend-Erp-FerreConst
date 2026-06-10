@@ -1,16 +1,223 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-app-bg: var(--app-bg);
+  --color-app-surface: var(--app-surface);
+  --color-app-surface-hover: var(--app-surface-hover);
+  --color-app-sidebar: var(--app-sidebar);
+  --color-app-code: var(--app-code);
+  --color-app-elevated: var(--app-elevated);
+  --color-app-border: var(--app-border);
+  --color-app-border-hover: var(--app-border-hover);
+  --color-app-text: var(--app-text);
+  --color-app-text-secondary: var(--app-text-secondary);
+  --color-app-text-muted: var(--app-text-muted);
+  --color-app-text-dim: var(--app-text-dim);
+  --color-app-scrollbar: var(--app-scrollbar);
+  --color-app-scrollbar-hover: var(--app-scrollbar-hover);
+  --color-tone-rules: var(--tone-rules);
+  --color-tone-rules-bg: var(--tone-rules-bg);
+  --color-tone-rules-border: var(--tone-rules-border);
+  --color-tone-rules-ring: var(--tone-rules-ring);
+  --color-tone-notes: var(--tone-notes);
+  --color-tone-notes-bg: var(--tone-notes-bg);
+  --color-tone-notes-border: var(--tone-notes-border);
+  --color-tone-notes-ring: var(--tone-notes-ring);
+  --color-tone-pending: var(--tone-pending);
+  --color-tone-pending-bg: var(--tone-pending-bg);
+  --color-tone-pending-border: var(--tone-pending-border);
+  --color-tone-pending-ring: var(--tone-pending-ring);
+  --color-tone-success: var(--tone-success);
+  --color-tone-success-bg: var(--tone-success-bg);
+  --color-tone-success-border: var(--tone-success-border);
+  --color-tone-success-ring: var(--tone-success-ring);
+  --color-tone-error: var(--tone-error);
+  --color-tone-error-bg: var(--tone-error-bg);
+  --color-tone-error-border: var(--tone-error-border);
+  --color-tone-error-ring: var(--tone-error-ring);
+  --color-tone-required: var(--tone-required);
+  --color-tone-required-bg: var(--tone-required-bg);
+  --color-tone-required-border: var(--tone-required-border);
+  --color-tone-required-ring: var(--tone-required-ring);
+  --color-method-get: var(--method-get);
+  --color-method-get-bg: var(--method-get-bg);
+  --color-method-get-border: var(--method-get-border);
+  --color-method-post: var(--method-post);
+  --color-method-post-bg: var(--method-post-bg);
+  --color-method-post-border: var(--method-post-border);
+  --color-method-put: var(--method-put);
+  --color-method-put-bg: var(--method-put-bg);
+  --color-method-put-border: var(--method-put-border);
+  --color-method-patch: var(--method-patch);
+  --color-method-patch-bg: var(--method-patch-bg);
+  --color-method-patch-border: var(--method-patch-border);
+  --color-method-delete: var(--method-delete);
+  --color-method-delete-bg: var(--method-delete-bg);
+  --color-method-delete-border: var(--method-delete-border);
+  --color-method-default: var(--method-default);
+  --color-method-default-bg: var(--method-default-bg);
+  --color-method-default-border: var(--method-default-border);
+  --color-syn-comment: var(--syn-comment);
+  --color-syn-keyword: var(--syn-keyword);
+  --color-syn-type: var(--syn-type);
+  --color-syn-string: var(--syn-string);
+  --color-syn-function: var(--syn-function);
+  --color-syn-number: var(--syn-number);
+  --color-syn-punctuation: var(--syn-punctuation);
+  --color-syn-default: var(--syn-default);
+  --color-syn-key: var(--syn-key);
+  --color-syn-null: var(--syn-null);
+  --color-syn-boolean: var(--syn-boolean);
+}
 
 :root {
-  --nextra-primary-hue: 210deg;
+  --app-bg: #fafafa;
+  --app-surface: #ffffff;
+  --app-surface-hover: #f4f4f5;
+  --app-sidebar: #f4f4f5;
+  --app-code: #ffffff;
+  --app-elevated: #ffffff;
+  --app-border: rgba(0, 0, 0, 0.08);
+  --app-border-hover: rgba(0, 0, 0, 0.12);
+  --app-text: #18181b;
+  --app-text-secondary: #52525b;
+  --app-text-muted: #71717a;
+  --app-text-dim: #a1a1aa;
+  --app-scrollbar: #d4d4d8;
+  --app-scrollbar-hover: #a1a1aa;
+  --tone-rules: #2563eb;
+  --tone-rules-bg: rgba(37, 99, 235, 0.1);
+  --tone-rules-border: rgba(37, 99, 235, 0.2);
+  --tone-rules-ring: rgba(37, 99, 235, 0.2);
+  --tone-notes: #ea580c;
+  --tone-notes-bg: rgba(234, 88, 12, 0.1);
+  --tone-notes-border: rgba(234, 88, 12, 0.2);
+  --tone-notes-ring: rgba(234, 88, 12, 0.2);
+  --tone-pending: #d97706;
+  --tone-pending-bg: rgba(217, 119, 6, 0.1);
+  --tone-pending-border: rgba(217, 119, 6, 0.18);
+  --tone-pending-ring: rgba(217, 119, 6, 0.2);
+  --tone-success: #059669;
+  --tone-success-bg: rgba(5, 150, 105, 0.1);
+  --tone-success-border: rgba(5, 150, 105, 0.16);
+  --tone-success-ring: rgba(5, 150, 105, 0.18);
+  --tone-error: #dc2626;
+  --tone-error-bg: rgba(220, 38, 38, 0.1);
+  --tone-error-border: rgba(220, 38, 38, 0.16);
+  --tone-error-ring: rgba(220, 38, 38, 0.18);
+  --tone-required: #dc2626;
+  --tone-required-bg: rgba(220, 38, 38, 0.08);
+  --tone-required-border: rgba(220, 38, 38, 0.16);
+  --tone-required-ring: rgba(220, 38, 38, 0.16);
+  --method-get: #059669;
+  --method-get-bg: rgba(5, 150, 105, 0.1);
+  --method-get-border: rgba(5, 150, 105, 0.15);
+  --method-post: #2563eb;
+  --method-post-bg: rgba(37, 99, 235, 0.12);
+  --method-post-border: rgba(37, 99, 235, 0.18);
+  --method-put: #d97706;
+  --method-put-bg: rgba(217, 119, 6, 0.12);
+  --method-put-border: rgba(217, 119, 6, 0.16);
+  --method-patch: #d97706;
+  --method-patch-bg: rgba(217, 119, 6, 0.12);
+  --method-patch-border: rgba(217, 119, 6, 0.16);
+  --method-delete: #dc2626;
+  --method-delete-bg: rgba(220, 38, 38, 0.12);
+  --method-delete-border: rgba(220, 38, 38, 0.16);
+  --method-default: #52525b;
+  --method-default-bg: rgba(82, 82, 91, 0.08);
+  --method-default-border: rgba(82, 82, 91, 0.12);
+  --syn-comment: #059669;
+  --syn-keyword: #7c3aed;
+  --syn-type: #0891b2;
+  --syn-string: #ca8a04;
+  --syn-function: #d97706;
+  --syn-number: #059669;
+  --syn-punctuation: #a1a1aa;
+  --syn-default: #52525b;
+  --syn-key: #0891b2;
+  --syn-null: #7c3aed;
+  --syn-boolean: #d97706;
 }
 
 .dark {
-  --nextra-primary-hue: 210deg;
+  --app-bg: #030303;
+  --app-surface: #0b0b0c;
+  --app-surface-hover: #111113;
+  --app-sidebar: #050505;
+  --app-code: #101012;
+  --app-elevated: #0d0d0e;
+  --app-border: rgba(255, 255, 255, 0.1);
+  --app-border-hover: rgba(255, 255, 255, 0.2);
+  --app-text: #ffffff;
+  --app-text-secondary: #a1a1aa;
+  --app-text-muted: #71717a;
+  --app-text-dim: #52525b;
+  --app-scrollbar: #3f3f46;
+  --app-scrollbar-hover: #71717a;
+  --tone-rules: #93c5fd;
+  --tone-rules-bg: rgba(147, 197, 253, 0.08);
+  --tone-rules-border: rgba(147, 197, 253, 0.1);
+  --tone-rules-ring: rgba(147, 197, 253, 0.15);
+  --tone-notes: #fde68a;
+  --tone-notes-bg: rgba(253, 230, 138, 0.08);
+  --tone-notes-border: rgba(253, 230, 138, 0.1);
+  --tone-notes-ring: rgba(253, 230, 138, 0.15);
+  --tone-pending: #fbbf24;
+  --tone-pending-bg: rgba(251, 191, 36, 0.12);
+  --tone-pending-border: rgba(251, 191, 36, 0.18);
+  --tone-pending-ring: rgba(251, 191, 36, 0.2);
+  --tone-success: #34d399;
+  --tone-success-bg: rgba(52, 211, 153, 0.12);
+  --tone-success-border: rgba(52, 211, 153, 0.16);
+  --tone-success-ring: rgba(52, 211, 153, 0.18);
+  --tone-error: #f87171;
+  --tone-error-bg: rgba(248, 113, 113, 0.12);
+  --tone-error-border: rgba(248, 113, 113, 0.18);
+  --tone-error-ring: rgba(248, 113, 113, 0.2);
+  --tone-required: #f87171;
+  --tone-required-bg: rgba(248, 113, 113, 0.1);
+  --tone-required-border: rgba(248, 113, 113, 0.16);
+  --tone-required-ring: rgba(248, 113, 113, 0.16);
+  --method-get: #34d399;
+  --method-get-bg: rgba(52, 211, 153, 0.12);
+  --method-get-border: rgba(52, 211, 153, 0.16);
+  --method-post: #60a5fa;
+  --method-post-bg: rgba(96, 165, 250, 0.14);
+  --method-post-border: rgba(96, 165, 250, 0.2);
+  --method-put: #fbbf24;
+  --method-put-bg: rgba(251, 191, 36, 0.13);
+  --method-put-border: rgba(251, 191, 36, 0.18);
+  --method-patch: #fbbf24;
+  --method-patch-bg: rgba(251, 191, 36, 0.13);
+  --method-patch-border: rgba(251, 191, 36, 0.18);
+  --method-delete: #f87171;
+  --method-delete-bg: rgba(248, 113, 113, 0.13);
+  --method-delete-border: rgba(248, 113, 113, 0.18);
+  --method-default: #d4d4d8;
+  --method-default-bg: rgba(212, 212, 216, 0.08);
+  --method-default-border: rgba(212, 212, 216, 0.12);
+  --syn-comment: #34d399;
+  --syn-keyword: #c084fc;
+  --syn-type: #22d3ee;
+  --syn-string: #fdba74;
+  --syn-function: #fbbf24;
+  --syn-number: #34d399;
+  --syn-punctuation: #a1a1aa;
+  --syn-default: #a1a1aa;
+  --syn-key: #22d3ee;
+  --syn-null: #c084fc;
+  --syn-boolean: #34d399;
 }
 
-/* Custom scrollbar */
+body {
+  margin: 0;
+  background: var(--app-bg);
+  color: var(--app-text);
+}
+
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -21,77 +228,101 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: var(--app-scrollbar);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: var(--app-scrollbar-hover);
 }
 
-/* Code block improvements */
 pre {
   border-radius: 0.5rem;
 }
 
-/* Endpoint method badges */
+.code-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--app-scrollbar) transparent;
+}
+
+.code-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.code-scroll::-webkit-scrollbar-track {
+  background: var(--app-code);
+  border-radius: 999px;
+}
+
+.code-scroll::-webkit-scrollbar-thumb {
+  background: var(--app-scrollbar);
+  border-radius: 999px;
+}
+
+.code-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--app-scrollbar-hover);
+}
+
+code {
+  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+}
+
+.text-clamp-2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
 .method-badge {
   display: inline-flex;
   align-items: center;
-  padding: 0.125rem 0.5rem;
-  border-radius: 0.25rem;
-  font-size: 0.75rem;
-  font-weight: 600;
+  justify-content: center;
+  border: 1px solid transparent;
+  min-height: 1.625rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.42rem;
+  font-size: 0.68rem;
+  font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  line-height: 1;
+  white-space: nowrap;
 }
 
 .method-get {
-  background-color: #dcfce7;
-  color: #166534;
+  background-color: var(--method-get-bg);
+  border-color: var(--method-get-border);
+  color: var(--method-get);
 }
 
 .method-post {
-  background-color: #dbeafe;
-  color: #1e40af;
+  background-color: var(--method-post-bg);
+  border-color: var(--method-post-border);
+  color: var(--method-post);
 }
 
 .method-put {
-  background-color: #fef3c7;
-  color: #92400e;
+  background-color: var(--method-put-bg);
+  border-color: var(--method-put-border);
+  color: var(--method-put);
 }
 
 .method-patch {
-  background-color: #fef3c7;
-  color: #92400e;
+  background-color: var(--method-patch-bg);
+  border-color: var(--method-patch-border);
+  color: var(--method-patch);
 }
 
 .method-delete {
-  background-color: #fee2e2;
-  color: #991b1b;
+  background-color: var(--method-delete-bg);
+  border-color: var(--method-delete-border);
+  color: var(--method-delete);
 }
 
-.dark .method-get {
-  background-color: #052e16;
-  color: #86efac;
-}
-
-.dark .method-post {
-  background-color: #1e3a5f;
-  color: #93c5fd;
-}
-
-.dark .method-put {
-  background-color: #451a03;
-  color: #fde68a;
-}
-
-.dark .method-patch {
-  background-color: #451a03;
-  color: #fde68a;
-}
-
-.dark .method-delete {
-  background-color: #450a0a;
-  color: #fca5a5;
+.method-default {
+  background-color: var(--method-default-bg);
+  border-color: var(--method-default-border);
+  color: var(--method-default);
 }
