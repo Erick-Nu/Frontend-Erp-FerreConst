@@ -1,6 +1,0 @@
-{
-  "register-checkout": "Crear Caja",
-  "get-checkouts": "Listar Cajas",
-  "get-checkout-by-id": "Obtener Caja",
-  "update-checkout-status": "Cambiar Estado"
-}

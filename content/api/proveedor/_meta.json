@@ -1,6 +1,0 @@
-{
-  "register-proveedor": "Crear Proveedor",
-  "get-proveedores": "Listar Proveedores",
-  "get-proveedor-by-id": "Obtener Proveedor",
-  "update-proveedor": "Actualizar Proveedor"
-}

@@ -1,7 +1,0 @@
-{
-  "register-config": "Crear Configuración",
-  "get-configs": "Listar Configuraciones",
-  "get-config-by-key": "Obtener Configuración",
-  "update-config": "Actualizar Configuración",
-  "delete-config": "Eliminar Configuración"
-}

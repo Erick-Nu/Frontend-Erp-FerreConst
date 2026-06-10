@@ -1,7 +1,0 @@
-{
-  "register-company": "Crear Empresa",
-  "get-companies": "Listar Empresas",
-  "get-company-by-id": "Obtener Empresa",
-  "update-company": "Actualizar Empresa",
-  "update-company-status": "Cambiar Estado"
-}

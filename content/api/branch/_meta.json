@@ -1,6 +1,0 @@
-{
-  "register-branch": "Crear Sucursal",
-  "get-branches": "Listar Sucursales",
-  "get-branch-by-id": "Obtener Sucursal",
-  "update-branch": "Actualizar Sucursal"
-}

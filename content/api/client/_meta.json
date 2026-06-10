@@ -1,6 +1,0 @@
-{
-  "register-client": "Crear Cliente",
-  "get-clients": "Listar Clientes",
-  "get-client-by-id": "Obtener Cliente",
-  "update-client": "Actualizar Cliente"
-}
