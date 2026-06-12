@@ -1,6 +1,5 @@
-const FALLBACK_API_BASE_URL = 'http://163.245.192.54:3000'
+const FALLBACK_API_BASE_URL = 'http://localhost:3000'
 const LEGACY_API_BASE_URLS = [
-  'http://163.245.192.54:3000',
   'http://localhost:3000',
   'https://api.tudominio.com',
 ]

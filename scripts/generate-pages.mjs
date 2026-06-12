@@ -4,7 +4,7 @@ import path from 'node:path'
 const root = process.cwd()
 const docsRoot = path.join(root, 'documentacion')
 const pagesRoot = path.join(root, 'src/app/api')
-const apiBaseUrl = (process.env.NEXT_PUBLIC_API_BASE_URL || 'http://163.245.192.54:3000').replace(/\/$/, '')
+const apiBaseUrl = (process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000').replace(/\/$/, '')
 
 const slugOverrides = new Map([
   ['auth/refresh-session', 'refresh'],
