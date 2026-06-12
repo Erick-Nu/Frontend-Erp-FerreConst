@@ -13,7 +13,7 @@ export function EndpointExamplePanel({ endpoint }: EndpointExamplePanelProps) {
 
   return (
     <aside className="space-y-5 sm:space-y-7 xl:sticky xl:top-24 xl:self-start">
-      <CodeBlock title="cURL" label="Default" language="bash" code={curlExample} maxHeight="18rem" />
+      <CodeBlock title="cURL" label="Por defecto" language="bash" code={curlExample} maxHeight="18rem" />
       {primaryResponse ? (
         <CodeBlock
           title={`${primaryResponse.status}`}

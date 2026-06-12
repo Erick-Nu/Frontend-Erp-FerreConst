@@ -46,7 +46,7 @@ export function EndpointReference({ module, endpoint }: EndpointReferenceProps) 
 
         {endpoint.authentication ? (
           <section className="mt-14">
-            <h2 className="border-b border-app-border pb-4 text-2xl font-black text-app-text">Authentication</h2>
+            <h2 className="border-b border-app-border pb-4 text-2xl font-black text-app-text">Autenticación</h2>
             <p className="mt-5 rounded-[1.25rem] border border-app-border bg-app-surface p-5 text-[15px] leading-7 text-app-text-secondary">
               {endpoint.authentication}
             </p>
@@ -67,18 +67,18 @@ export function EndpointReference({ module, endpoint }: EndpointReferenceProps) 
         ) : null}
 
         <FieldsSection title="Headers" fields={endpoint.headers} />
-        <FieldsSection title="Path Parameters" fields={endpoint.pathParams} />
-        <FieldsSection title="Query Parameters" fields={endpoint.queryParams} />
+        <FieldsSection title="Parámetros de ruta" fields={endpoint.pathParams} />
+        <FieldsSection title="Parámetros de consulta" fields={endpoint.queryParams} />
         {endpoint.bodyGroups?.length ? (
           endpoint.bodyGroups.map((group) => (
             <FieldsSection key={group.title} title={group.title} fields={group.fields} contentType={endpoint.contentType} />
           ))
         ) : (
-          <FieldsSection title="Body" fields={endpoint.body} contentType={endpoint.contentType} />
+          <FieldsSection title="Cuerpo" fields={endpoint.body} contentType={endpoint.contentType} />
         )}
 
         <ListSection
-          title="Business Rules"
+          title="Reglas de negocio"
           tone="rules"
           description="Condiciones que el backend aplica antes, durante o despues de ejecutar este endpoint. Sirven para entender validaciones, restricciones y efectos secundarios de la operacion."
           items={endpoint.businessRules?.length ? endpoint.businessRules : ['No aplica.']}
@@ -106,10 +106,10 @@ export function EndpointReference({ module, endpoint }: EndpointReferenceProps) 
         ) : null}
 
         <section className="mt-14">
-          <h2 className="border-b border-app-border pb-4 text-2xl font-black text-app-text">Responses</h2>
+          <h2 className="border-b border-app-border pb-4 text-2xl font-black text-app-text">Respuestas</h2>
           {endpoint.responseContentType ? (
             <p className="mt-4 max-w-3xl text-[15px] leading-7 text-app-text-muted">
-              Response content type: <code className="text-app-text-secondary">{endpoint.responseContentType}</code>
+                Tipo de contenido: <code className="text-app-text-secondary">{endpoint.responseContentType}</code>
             </p>
           ) : null}
           <div className="mt-4 divide-y divide-app-border">
@@ -128,7 +128,7 @@ export function EndpointReference({ module, endpoint }: EndpointReferenceProps) 
 
         {endpoint.notes?.length ? (
           <ListSection
-            title="Notes"
+            title="Notas"
             tone="notes"
             description="Consideraciones adicionales para consumir este endpoint correctamente y evitar errores de integracion."
             items={endpoint.notes}

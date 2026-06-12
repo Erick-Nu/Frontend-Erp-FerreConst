@@ -12,10 +12,10 @@ export function FieldRow({ field }: FieldRowProps) {
         <span className="rounded-md border border-app-border bg-app-surface px-2 py-1 text-xs font-bold text-app-text-secondary">{field.type}</span>
         {field.required ? (
           <span className="rounded-md border border-[var(--tone-required-border)] bg-[var(--tone-required-bg)] px-2 py-1 text-xs font-bold text-[var(--tone-required)]">
-            required
+            obligatorio
           </span>
         ) : (
-          <span className="rounded-md border border-app-border bg-app-surface px-2 py-1 text-xs font-bold text-app-text-muted">optional</span>
+          <span className="rounded-md border border-app-border bg-app-surface px-2 py-1 text-xs font-bold text-app-text-muted">            opcional</span>
         )}
       </div>
       <p className="mt-4 text-[15px] leading-7 text-app-text-secondary">{field.description}</p>

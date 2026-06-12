@@ -42,7 +42,7 @@ export function CodeBlock({ title, code, language = 'json', label, maxHeight = '
           onClick={copyCode}
           className="inline-flex min-h-11 items-center justify-center rounded-lg border border-app-border px-3 py-2 text-xs font-semibold text-app-text-secondary transition hover:border-app-border-hover hover:bg-app-surface hover:text-app-text sm:min-h-0 sm:px-2.5 sm:py-1.5"
         >
-          {copied ? 'Copied' : 'Copy'}
+          {copied ? 'Copiado' : 'Copiar'}
         </button>
       </div>
       <pre className="code-scroll overflow-auto bg-app-code p-4 text-[13px] leading-6 sm:p-5" style={{ maxHeight }}>

@@ -45,7 +45,7 @@ export function AppShell({ children }: AppShellProps) {
       <header className="sticky top-0 z-40 border-b border-app-border bg-app-bg/90 backdrop-blur-xl">
         <div className="flex min-h-16 items-center justify-between gap-3 px-4 sm:px-5 lg:hidden">
           <Link href="/" className="min-w-0 text-sm font-black tracking-tight text-app-text sm:text-base">
-            <span className="block truncate">BaaS Ferreconst Docs</span>
+            <span className="block truncate">Documentación API Ferretería ESNT</span>
           </Link>
           <div className="flex items-center gap-2">
             <ThemeToggle />
@@ -65,11 +65,11 @@ export function AppShell({ children }: AppShellProps) {
 
         <div className="hidden min-h-14 lg:grid lg:grid-cols-[340px_minmax(0,1fr)_auto] lg:items-center lg:px-0">
           <Link href="/" className="text-base font-black tracking-tight text-app-text lg:px-10">
-            BaaS Ferreconst Docs
+            Documentación API Ferretería ESNT
           </Link>
           <nav className="flex h-full items-center gap-7 text-sm font-bold text-app-text-muted lg:px-10">
-            <TopNavLink href="/getting-started" label="Documentation" active={pathname.startsWith('/getting-started')} />
-            <TopNavLink href="/api" label="API Reference" active={pathname.startsWith('/api')} />
+            <TopNavLink href="/getting-started" label="Documentación" active={pathname.startsWith('/getting-started')} />
+            <TopNavLink href="/api" label="Referencia API" active={pathname.startsWith('/api')} />
           </nav>
           <div className="flex items-center justify-end pr-10">
             <ThemeToggle />
@@ -101,7 +101,7 @@ export function AppShell({ children }: AppShellProps) {
           >
             <div className="flex items-center justify-between gap-3 border-b border-app-border pb-4">
               <div className="min-w-0">
-                <div className="truncate text-sm font-black tracking-tight text-app-text">BaaS Ferreconst Docs</div>
+                <div className="truncate text-sm font-black tracking-tight text-app-text">Documentación API Ferretería ESNT</div>
                 <p className="mt-1 text-xs text-app-text-muted">Navegacion y referencia API</p>
               </div>
               <button
@@ -119,13 +119,13 @@ export function AppShell({ children }: AppShellProps) {
             <nav className="mt-5 grid gap-2">
               <MobileTopNavLink
                 href="/getting-started"
-                label="Documentation"
+                label="Documentación"
                 active={pathname.startsWith('/getting-started')}
                 onNavigate={() => setMobileMenuOpen(false)}
               />
               <MobileTopNavLink
                 href="/api"
-                label="API Reference"
+                label="Referencia API"
                 active={pathname.startsWith('/api')}
                 onNavigate={() => setMobileMenuOpen(false)}
               />
@@ -172,7 +172,7 @@ function SidebarContent({
           active={pathname === '/getting-started/authentication'}
           onNavigate={onNavigate}
         />
-        <SidebarLink href="/api" label="API Overview" active={pathname === '/api'} onNavigate={onNavigate} />
+        <SidebarLink href="/api" label="Vista general" active={pathname === '/api'} onNavigate={onNavigate} />
       </div>
 
       <div className="mt-8 border-l border-app-border pl-4">
