@@ -10,7 +10,7 @@ type EndpointReferenceProps = {
 
 export function EndpointReference({ module, endpoint }: EndpointReferenceProps) {
   return (
-    <div className="grid gap-8 xl:grid-cols-[minmax(0,1fr)_380px] 2xl:grid-cols-[minmax(0,1fr)_420px]">
+    <div className="grid gap-8 xl:grid-cols-[minmax(0,1fr)_440px] 2xl:grid-cols-[minmax(0,1fr)_500px]">
       <article className="min-w-0 pb-16 sm:pb-20">
         <p className="text-[15px] text-app-text-secondary">Endpoints / {module.title}</p>
         <div className="mt-5 flex items-start justify-between gap-6">
