@@ -8,7 +8,7 @@ export default function ObtenerBrandPage() {
   
   const endpoint = {
     slug: 'get-brand-by-id',
-    title: 'Obtener Brand',
+    title: 'Obtener marca',
     method: 'GET' as const,
     path: '/brands/:id',
     summary: 'Obtiene una marca por su identificador, limitada a la empresa del usuario autenticado.',

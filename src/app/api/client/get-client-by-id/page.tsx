@@ -8,7 +8,7 @@ export default function ObtenerClientPage() {
   
   const endpoint = {
     slug: 'get-client-by-id',
-    title: 'Obtener Client',
+    title: 'Obtener cliente',
     method: 'GET' as const,
     path: '/clients/:id',
     summary: 'Obtiene un cliente por su identificador, limitado a la empresa del usuario autenticado.',

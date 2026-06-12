@@ -8,7 +8,7 @@ export default function ActualizarStockPage() {
   
   const endpoint = {
     slug: 'update-stock',
-    title: 'Actualizar Stock',
+    title: 'Actualizar stock',
     method: 'PATCH' as const,
     path: '/stocks/:id',
     summary: 'Actualiza un stock por su identificador, limitado a la empresa del usuario autenticado.',

@@ -8,7 +8,7 @@ export default function ActualizarBranchPage() {
   
   const endpoint = {
     slug: 'update-branch',
-    title: 'Actualizar Branch',
+    title: 'Actualizar sucursal',
     method: 'PATCH' as const,
     path: '/branches/:id',
     summary: 'Actualiza una sucursal por su identificador, limitada a la empresa del usuario autenticado.',

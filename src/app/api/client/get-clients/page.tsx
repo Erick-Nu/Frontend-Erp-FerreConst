@@ -8,7 +8,7 @@ export default function ListarClientsPage() {
   
   const endpoint = {
     slug: 'get-clients',
-    title: 'Listar Clients',
+    title: 'Listar clientes',
     method: 'GET' as const,
     path: '/clients',
     summary: 'Obtiene el listado paginado de clientes de la empresa del usuario autenticado.',

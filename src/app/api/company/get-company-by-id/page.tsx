@@ -8,7 +8,7 @@ export default function ObtenerCompanyPage() {
   
   const endpoint = {
     slug: 'get-company-by-id',
-    title: 'Obtener Company',
+    title: 'Obtener empresa',
     method: 'GET' as const,
     path: '/companies/:id',
     summary: 'Obtiene una empresa por su identificador.',

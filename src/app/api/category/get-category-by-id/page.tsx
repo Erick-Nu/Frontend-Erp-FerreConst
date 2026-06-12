@@ -8,7 +8,7 @@ export default function ObtenerCategoryPage() {
   
   const endpoint = {
     slug: 'get-category-by-id',
-    title: 'Obtener Category',
+    title: 'Obtener categoría',
     method: 'GET' as const,
     path: '/categories/:id',
     summary: 'Obtiene una categoría por su identificador, limitada a la empresa del usuario autenticado.',

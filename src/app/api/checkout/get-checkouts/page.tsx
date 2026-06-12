@@ -8,7 +8,7 @@ export default function ListarCheckoutsPage() {
   
   const endpoint = {
     slug: 'get-checkouts',
-    title: 'Listar Checkouts',
+    title: 'Listar cajas',
     method: 'GET' as const,
     path: '/checkouts',
     summary: 'Obtiene el listado paginado de cajas de la empresa del usuario autenticado, incluyendo datos básicos de su sucursal.',

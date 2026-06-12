@@ -8,7 +8,7 @@ export default function ActualizarPlaymentMethodPage() {
   
   const endpoint = {
     slug: 'update-playment-method',
-    title: 'Actualizar Playment Method',
+    title: 'Actualizar método de pago',
     method: 'PATCH' as const,
     path: '/playment-methods/:id',
     summary: 'Actualiza los datos de un método de pago por su identificador, limitado a la empresa del usuario autenticado.',

@@ -8,7 +8,7 @@ export default function CrearClientPage() {
   
   const endpoint = {
     slug: 'register-client',
-    title: 'Crear Client',
+    title: 'Crear cliente',
     method: 'POST' as const,
     path: '/clients',
     summary: 'Crea un nuevo cliente para la empresa indicada en el body.',

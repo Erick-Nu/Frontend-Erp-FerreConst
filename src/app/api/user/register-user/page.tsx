@@ -8,7 +8,7 @@ export default function CrearUserPage() {
   
   const endpoint = {
     slug: 'register-user',
-    title: 'Crear User',
+    title: 'Crear usuario',
     method: 'POST' as const,
     path: '/users',
     summary: 'Registra un nuevo usuario.',

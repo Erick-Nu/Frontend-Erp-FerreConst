@@ -8,7 +8,7 @@ export default function ObtenerStockPage() {
   
   const endpoint = {
     slug: 'get-stock-by-id',
-    title: 'Obtener Stock',
+    title: 'Obtener stock',
     method: 'GET' as const,
     path: '/stocks/:id',
     summary: 'Obtiene un stock por su identificador, limitado a la empresa del usuario autenticado.',

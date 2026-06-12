@@ -8,7 +8,7 @@ export default function ActualizarCategoryPage() {
   
   const endpoint = {
     slug: 'update-category',
-    title: 'Actualizar Category',
+    title: 'Actualizar categoría',
     method: 'PATCH' as const,
     path: '/categories/:id',
     summary: 'Actualiza una categoría por su identificador, limitada a la empresa del usuario autenticado.',

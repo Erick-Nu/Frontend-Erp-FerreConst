@@ -8,7 +8,7 @@ export default function ListarBranchesPage() {
   
   const endpoint = {
     slug: 'get-branches',
-    title: 'Listar Branches',
+    title: 'Listar sucursales',
     method: 'GET' as const,
     path: '/branches',
     summary: 'Obtiene el listado paginado de sucursales de la empresa del usuario autenticado.',

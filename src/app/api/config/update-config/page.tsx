@@ -8,7 +8,7 @@ export default function ActualizarConfigPage() {
   
   const endpoint = {
     slug: 'update-config',
-    title: 'Actualizar Config',
+    title: 'Actualizar configuración',
     method: 'PATCH' as const,
     path: '/configs/:configKey',
     summary: 'Actualiza el valor de una configuración existente.',

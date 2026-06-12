@@ -8,7 +8,7 @@ export default function CrearBrandPage() {
   
   const endpoint = {
     slug: 'register-brand',
-    title: 'Crear Brand',
+    title: 'Crear marca',
     method: 'POST' as const,
     path: '/brands',
     summary: 'Crea una nueva marca para la empresa indicada en el body.',

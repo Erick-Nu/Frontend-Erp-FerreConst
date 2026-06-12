@@ -8,7 +8,7 @@ export default function RefreshSessionPage() {
   
   const endpoint = {
     slug: 'refresh',
-    title: 'Refresh Session',
+    title: 'Renovar sesión',
     method: 'POST' as const,
     path: '/auth/refresh',
     summary: 'Renueva la sesión usando el refreshToken y retorna un nuevo par de tokens.',

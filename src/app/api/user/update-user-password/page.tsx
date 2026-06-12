@@ -8,7 +8,7 @@ export default function ActualizarUserPasswordPage() {
   
   const endpoint = {
     slug: 'update-user-password',
-    title: 'Actualizar User Password',
+    title: 'Actualizar contraseña de usuario',
     method: 'PATCH' as const,
     path: '/users/:id/password',
     summary: 'Actualiza la contraseña de un usuario y no retorna el hash actualizado.',

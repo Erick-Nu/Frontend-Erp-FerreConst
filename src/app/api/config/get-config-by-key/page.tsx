@@ -8,7 +8,7 @@ export default function ListarConfigByKeyPage() {
   
   const endpoint = {
     slug: 'get-config-by-key',
-    title: 'Listar Config By Key',
+    title: 'Obtener configuración por clave',
     method: 'GET' as const,
     path: '/configs/:configKey',
     summary: 'Obtiene una configuración puntual usando su clave.',

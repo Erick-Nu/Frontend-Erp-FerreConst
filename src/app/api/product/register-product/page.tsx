@@ -8,7 +8,7 @@ export default function CrearProductPage() {
   
   const endpoint = {
     slug: 'register-product',
-    title: 'Crear Product',
+    title: 'Crear producto',
     method: 'POST' as const,
     path: '/products',
     summary: 'Crea un nuevo producto para la empresa indicada en el body.',

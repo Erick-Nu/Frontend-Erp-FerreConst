@@ -8,7 +8,7 @@ export default function ObtenerPlaymentMethodPage() {
   
   const endpoint = {
     slug: 'get-playment-method-by-id',
-    title: 'Obtener Playment Method',
+    title: 'Obtener método de pago',
     method: 'GET' as const,
     path: '/playment-methods/:id',
     summary: 'Obtiene un método de pago por su identificador, limitado a la empresa del usuario autenticado.',

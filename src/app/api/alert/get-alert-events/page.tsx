@@ -8,7 +8,7 @@ export default function ListarAlertEventsPage() {
   
   const endpoint = {
     slug: 'get-alert-events',
-    title: 'Listar Alert Events',
+    title: 'Listar eventos de alerta',
     method: 'GET' as const,
     path: '/alerts/events',
     summary: 'Abre una conexión SSE (Server-Sent Events) para recibir alertas nuevas de la empresa del usuario autenticado en tiempo real.',

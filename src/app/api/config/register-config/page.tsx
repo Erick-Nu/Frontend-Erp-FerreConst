@@ -8,7 +8,7 @@ export default function CrearConfigPage() {
   
   const endpoint = {
     slug: 'register-config',
-    title: 'Crear Config',
+    title: 'Crear configuración',
     method: 'POST' as const,
     path: '/configs',
     summary: 'Crea una configuración para una empresa.',

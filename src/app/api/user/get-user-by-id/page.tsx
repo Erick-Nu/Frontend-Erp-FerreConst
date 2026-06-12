@@ -8,7 +8,7 @@ export default function ObtenerUserPage() {
   
   const endpoint = {
     slug: 'get-user-by-id',
-    title: 'Obtener User',
+    title: 'Obtener usuario',
     method: 'GET' as const,
     path: '/users/:id',
     summary: 'Obtiene un usuario por su identificador.',

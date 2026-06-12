@@ -8,7 +8,7 @@ export default function ListarCategoriesPage() {
   
   const endpoint = {
     slug: 'get-categories',
-    title: 'Listar Categories',
+    title: 'Listar categorías',
     method: 'GET' as const,
     path: '/categories',
     summary: 'Obtiene el listado paginado de categorías de la empresa del usuario autenticado.',

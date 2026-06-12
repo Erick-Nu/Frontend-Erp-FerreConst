@@ -8,7 +8,7 @@ export default function ListarUsersPage() {
   
   const endpoint = {
     slug: 'get-users',
-    title: 'Listar Users',
+    title: 'Listar usuarios',
     method: 'GET' as const,
     path: '/users',
     summary: 'Obtiene el listado paginado de usuarios de la empresa del usuario autenticado.',

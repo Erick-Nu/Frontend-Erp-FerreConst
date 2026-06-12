@@ -8,7 +8,7 @@ export default function CrearCheckoutPage() {
   
   const endpoint = {
     slug: 'register-checkout',
-    title: 'Crear Checkout',
+    title: 'Crear caja',
     method: 'POST' as const,
     path: '/checkouts',
     summary: 'Crea una caja en una sucursal de la empresa indicada en el body.',

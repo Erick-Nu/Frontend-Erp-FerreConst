@@ -8,7 +8,7 @@ export default function ActualizarProductPage() {
   
   const endpoint = {
     slug: 'update-product',
-    title: 'Actualizar Product',
+    title: 'Actualizar producto',
     method: 'PATCH' as const,
     path: '/products/:id',
     summary: 'Actualiza un producto por su identificador, limitado a la empresa del usuario autenticado.',

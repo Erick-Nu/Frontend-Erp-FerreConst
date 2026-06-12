@@ -8,7 +8,7 @@ export default function ActualizarBrandPage() {
   
   const endpoint = {
     slug: 'update-brand',
-    title: 'Actualizar Brand',
+    title: 'Actualizar marca',
     method: 'PATCH' as const,
     path: '/brands/:id',
     summary: 'Actualiza una marca por su identificador, limitada a la empresa del usuario autenticado.',

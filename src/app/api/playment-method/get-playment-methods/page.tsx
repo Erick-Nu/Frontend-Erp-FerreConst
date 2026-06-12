@@ -8,7 +8,7 @@ export default function ListarPlaymentMethodsPage() {
   
   const endpoint = {
     slug: 'get-playment-methods',
-    title: 'Listar Playment Methods',
+    title: 'Listar métodos de pago',
     method: 'GET' as const,
     path: '/playment-methods',
     summary: 'Obtiene el listado paginado de métodos de pago de la empresa del usuario autenticado.',

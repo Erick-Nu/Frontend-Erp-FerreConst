@@ -8,7 +8,7 @@ export default function ActualizarCompanyPage() {
   
   const endpoint = {
     slug: 'update-company',
-    title: 'Actualizar Company',
+    title: 'Actualizar empresa',
     method: 'PATCH' as const,
     path: '/companies/:id',
     summary: 'Actualiza los datos de una empresa y retorna la empresa con los valores actualizados.',

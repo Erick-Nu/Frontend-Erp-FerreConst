@@ -8,7 +8,7 @@ export default function ListarStocksPage() {
   
   const endpoint = {
     slug: 'get-stocks',
-    title: 'Listar Stocks',
+    title: 'Listar stocks',
     method: 'GET' as const,
     path: '/stocks',
     summary: 'Obtiene el listado paginado de stocks para una sucursal de la empresa del usuario autenticado.',

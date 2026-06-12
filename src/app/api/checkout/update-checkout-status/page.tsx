@@ -8,7 +8,7 @@ export default function ActualizarCheckoutPage() {
   
   const endpoint = {
     slug: 'update-checkout-status',
-    title: 'Actualizar Checkout',
+    title: 'Actualizar estado de caja',
     method: 'PATCH' as const,
     path: '/checkouts/:id/status',
     summary: 'Actualiza únicamente el estado de una caja por su identificador de fila (cjid), limitada a la empresa del usuario autenticado.',

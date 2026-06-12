@@ -8,7 +8,7 @@ export default function ListarBrandsPage() {
   
   const endpoint = {
     slug: 'get-brands',
-    title: 'Listar Brands',
+    title: 'Listar marcas',
     method: 'GET' as const,
     path: '/brands',
     summary: 'Obtiene el listado paginado de marcas de la empresa del usuario autenticado.',

@@ -8,7 +8,7 @@ export default function CrearBranchPage() {
   
   const endpoint = {
     slug: 'register-branch',
-    title: 'Crear Branch',
+    title: 'Crear sucursal',
     method: 'POST' as const,
     path: '/branches',
     summary: 'Crea una sucursal para la empresa enviada en el body, siempre que coincida con la empresa del usuario autenticado.',

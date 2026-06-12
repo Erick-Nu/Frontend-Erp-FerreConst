@@ -8,7 +8,7 @@ export default function CrearCompanyPage() {
   
   const endpoint = {
     slug: 'register-company',
-    title: 'Crear Company',
+    title: 'Crear empresa',
     method: 'POST' as const,
     path: '/companies',
     summary: 'Registra una nueva empresa.',

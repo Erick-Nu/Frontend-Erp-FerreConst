@@ -8,7 +8,7 @@ export default function ActualizarUserPage() {
   
   const endpoint = {
     slug: 'update-user',
-    title: 'Actualizar User',
+    title: 'Actualizar usuario',
     method: 'PATCH' as const,
     path: '/users/:id',
     summary: 'Actualiza los datos de un usuario y retorna el usuario con los valores actualizados.',

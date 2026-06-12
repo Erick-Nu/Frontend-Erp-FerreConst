@@ -8,7 +8,7 @@ export default function CrearCategoryPage() {
   
   const endpoint = {
     slug: 'register-category',
-    title: 'Crear Category',
+    title: 'Crear categoría',
     method: 'POST' as const,
     path: '/categories',
     summary: 'Crea una nueva categoría para la empresa indicada en el body.',

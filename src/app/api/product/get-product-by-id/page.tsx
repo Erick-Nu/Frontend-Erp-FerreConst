@@ -8,7 +8,7 @@ export default function ObtenerProductPage() {
   
   const endpoint = {
     slug: 'get-product-by-id',
-    title: 'Obtener Product',
+    title: 'Obtener producto',
     method: 'GET' as const,
     path: '/products/:id',
     summary: 'Obtiene un producto por su identificador, limitado a la empresa del usuario autenticado.',

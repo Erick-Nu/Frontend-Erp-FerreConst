@@ -8,7 +8,7 @@ export default function ListarProductsPage() {
   
   const endpoint = {
     slug: 'get-products',
-    title: 'Listar Products',
+    title: 'Listar productos',
     method: 'GET' as const,
     path: '/products',
     summary: 'Obtiene el listado paginado de productos de la empresa del usuario autenticado.',

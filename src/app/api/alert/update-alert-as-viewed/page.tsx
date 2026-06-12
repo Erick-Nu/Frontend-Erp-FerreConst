@@ -8,7 +8,7 @@ export default function ActualizarAlertAsViewedPage() {
   
   const endpoint = {
     slug: 'update-alert-as-viewed',
-    title: 'Actualizar Alert As Viewed',
+    title: 'Actualizar alerta como vista',
     method: 'PATCH' as const,
     path: '/alerts/:id/visto',
     summary: 'Marca una alerta como vista dentro de la empresa del usuario autenticado.',

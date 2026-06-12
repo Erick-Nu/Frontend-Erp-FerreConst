@@ -8,7 +8,7 @@ export default function ListarCompaniesPage() {
   
   const endpoint = {
     slug: 'get-companies',
-    title: 'Listar Companies',
+    title: 'Listar empresas',
     method: 'GET' as const,
     path: '/companies',
     summary: 'Obtiene el listado paginado de empresas.',

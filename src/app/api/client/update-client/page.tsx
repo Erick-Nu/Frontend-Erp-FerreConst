@@ -8,7 +8,7 @@ export default function ActualizarClientPage() {
   
   const endpoint = {
     slug: 'update-client',
-    title: 'Actualizar Client',
+    title: 'Actualizar cliente',
     method: 'PATCH' as const,
     path: '/clients/:id',
     summary: 'Actualiza un cliente por su identificador, limitado a la empresa del usuario autenticado.',

@@ -8,7 +8,7 @@ export default function CrearStockPage() {
   
   const endpoint = {
     slug: 'register-stock',
-    title: 'Crear Stock',
+    title: 'Crear stock',
     method: 'POST' as const,
     path: '/stocks',
     summary: 'Registra un stock para una sucursal y producto de una empresa.',

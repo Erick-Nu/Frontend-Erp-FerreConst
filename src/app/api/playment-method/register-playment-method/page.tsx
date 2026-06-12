@@ -8,7 +8,7 @@ export default function CrearPlaymentMethodPage() {
   
   const endpoint = {
     slug: 'register-playment-method',
-    title: 'Crear Playment Method',
+    title: 'Crear método de pago',
     method: 'POST' as const,
     path: '/playment-methods',
     summary: 'Crea un nuevo método de pago para la empresa indicada en el body.',

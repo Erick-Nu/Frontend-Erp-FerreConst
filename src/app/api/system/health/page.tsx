@@ -8,7 +8,7 @@ export default function HealthCheckPage() {
   
   const endpoint = {
     slug: 'health',
-    title: 'Health Check',
+    title: 'Verificación de salud',
     method: 'GET' as const,
     path: '/',
     summary: 'Endpoint base de verificación del servicio. Permite validar que la API está levantada.',

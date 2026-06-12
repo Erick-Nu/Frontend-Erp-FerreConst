@@ -8,7 +8,7 @@ export default function ListarAlertsPage() {
   
   const endpoint = {
     slug: 'get-alerts',
-    title: 'Listar Alerts',
+    title: 'Listar alertas',
     method: 'GET' as const,
     path: '/alerts',
     summary: 'Obtiene el listado paginado de alertas visibles de la empresa del usuario autenticado.',

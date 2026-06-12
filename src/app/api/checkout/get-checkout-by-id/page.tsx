@@ -8,7 +8,7 @@ export default function ObtenerCheckoutPage() {
   
   const endpoint = {
     slug: 'get-checkout-by-id',
-    title: 'Obtener Checkout',
+    title: 'Obtener caja',
     method: 'GET' as const,
     path: '/checkouts/:id',
     summary: 'Obtiene una caja por su identificador dentro de una sucursal específica, limitada a la empresa del usuario autenticado, incluyendo datos básicos de la sucursal.',

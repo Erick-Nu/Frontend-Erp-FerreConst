@@ -8,7 +8,7 @@ export default function ObtenerBranchPage() {
   
   const endpoint = {
     slug: 'get-branch-by-id',
-    title: 'Obtener Branch',
+    title: 'Obtener sucursal',
     method: 'GET' as const,
     path: '/branches/:id',
     summary: 'Obtiene una sucursal por su identificador, limitada a la empresa del usuario autenticado.',

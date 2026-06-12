@@ -8,7 +8,7 @@ export default function ListarConfigsPage() {
   
   const endpoint = {
     slug: 'get-configs',
-    title: 'Listar Configs',
+    title: 'Listar configuraciones',
     method: 'GET' as const,
     path: '/configs',
     summary: 'Obtiene todas las configuraciones de una empresa.',

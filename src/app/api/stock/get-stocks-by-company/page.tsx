@@ -8,7 +8,7 @@ export default function ListarStocksByCompanyPage() {
   
   const endpoint = {
     slug: 'get-stocks-by-company',
-    title: 'Listar Stocks By Company',
+    title: 'Listar stock por empresa',
     method: 'GET' as const,
     path: '/stocks/all',
     summary: 'Obtiene el listado paginado de todos los stocks de la empresa del usuario autenticado, sin filtrar por sucursal.',

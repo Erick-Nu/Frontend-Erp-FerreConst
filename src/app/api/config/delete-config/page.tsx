@@ -8,7 +8,7 @@ export default function EliminarConfigPage() {
   
   const endpoint = {
     slug: 'delete-config',
-    title: 'Eliminar Config',
+    title: 'Eliminar configuración',
     method: 'DELETE' as const,
     path: '/configs/:configKey',
     summary: 'Elimina una configuración usando su clave.',
