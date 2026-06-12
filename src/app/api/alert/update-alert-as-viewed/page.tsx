@@ -1,7 +1,7 @@
 import { EndpointReference } from '@/components/docs/EndpointReference'
 import { getModule } from '@/config/navigation'
 
-export const metadata = { title: 'Actualizar Alert As Viewed' }
+export const metadata = { title: 'Actualizar alerta como vista' }
 
 export default function ActualizarAlertAsViewedPage() {
   const module = getModule('alert')!

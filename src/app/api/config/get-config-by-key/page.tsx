@@ -1,7 +1,7 @@
 import { EndpointReference } from '@/components/docs/EndpointReference'
 import { getModule } from '@/config/navigation'
 
-export const metadata = { title: 'Listar Config By Key' }
+export const metadata = { title: 'Obtener configuración por clave' }
 
 export default function ListarConfigByKeyPage() {
   const module = getModule('config')!

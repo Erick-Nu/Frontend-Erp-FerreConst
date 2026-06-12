@@ -1,7 +1,7 @@
 import { EndpointReference } from '@/components/docs/EndpointReference'
 import { getModule } from '@/config/navigation'
 
-export const metadata = { title: 'Actualizar User Password' }
+export const metadata = { title: 'Actualizar contraseña de usuario' }
 
 export default function ActualizarUserPasswordPage() {
   const module = getModule('user')!

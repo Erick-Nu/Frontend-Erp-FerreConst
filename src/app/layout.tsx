@@ -5,8 +5,8 @@ import '../styles/globals.css'
 
 export const metadata: Metadata = {
   title: {
-    default: 'Documentación API Ferretería ESNT',
-    template: '%s | Documentación API Ferretería ESNT',
+    default: 'BaaS Ferreconst Docs',
+    template: '%s | BaaS Ferreconst Docs',
   },
   description: 'Documentacion de la API REST del sistema de ferreteria ESNT',
   metadataBase: getMetadataBase(),

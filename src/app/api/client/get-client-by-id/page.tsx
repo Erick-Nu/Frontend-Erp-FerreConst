@@ -1,7 +1,7 @@
 import { EndpointReference } from '@/components/docs/EndpointReference'
 import { getModule } from '@/config/navigation'
 
-export const metadata = { title: 'Obtener Client' }
+export const metadata = { title: 'Obtener cliente' }
 
 export default function ObtenerClientPage() {
   const module = getModule('client')!

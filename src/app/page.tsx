@@ -7,7 +7,7 @@ export default function HomePage() {
       <div className="max-w-3xl">
         <p className="text-sm font-semibold uppercase tracking-[0.16em] text-app-text-muted sm:tracking-[0.2em]">Documentacion API REST</p>
         <h1 className="mt-3 text-3xl font-black tracking-tight text-app-text sm:text-4xl lg:text-5xl">
-          Documentación API Ferretería ESNT
+          BaaS Ferreconst Docs
         </h1>
         <p className="mt-4 text-base leading-7 text-app-text-secondary sm:text-lg sm:leading-8">
           Documentacion API con rutas reales, sidebar de endpoints y ejemplos cURL/response para cada recurso.

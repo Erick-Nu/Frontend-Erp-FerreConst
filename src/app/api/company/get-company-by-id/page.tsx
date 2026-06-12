@@ -1,7 +1,7 @@
 import { EndpointReference } from '@/components/docs/EndpointReference'
 import { getModule } from '@/config/navigation'
 
-export const metadata = { title: 'Obtener Company' }
+export const metadata = { title: 'Obtener empresa' }
 
 export default function ObtenerCompanyPage() {
   const module = getModule('company')!

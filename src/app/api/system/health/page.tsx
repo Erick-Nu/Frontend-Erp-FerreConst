@@ -1,7 +1,7 @@
 import { EndpointReference } from '@/components/docs/EndpointReference'
 import { getModule } from '@/config/navigation'
 
-export const metadata = { title: 'Health Check' }
+export const metadata = { title: 'Verificación de salud' }
 
 export default function HealthCheckPage() {
   const module = getModule('system')!

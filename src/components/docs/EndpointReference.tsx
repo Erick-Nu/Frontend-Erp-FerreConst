@@ -86,7 +86,7 @@ export function EndpointReference({ module, endpoint }: EndpointReferenceProps) 
 
         {endpoint.errors?.length ? (
           <section className="mt-14">
-            <h2 className="border-b border-app-border pb-4 text-2xl font-black text-app-text">Errors</h2>
+            <h2 className="border-b border-app-border pb-4 text-2xl font-black text-app-text">Errores</h2>
             <div className="mt-5 divide-y divide-app-border rounded-[1.25rem] border border-app-border bg-app-surface">
               {endpoint.errors.map((error, index) => (
                 <div key={`${error.status}-${error.title}-${index}`} className="p-5">

@@ -45,7 +45,7 @@ export function AppShell({ children }: AppShellProps) {
       <header className="sticky top-0 z-40 border-b border-app-border bg-app-bg/90 backdrop-blur-xl">
         <div className="flex min-h-16 items-center justify-between gap-3 px-4 sm:px-5 lg:hidden">
           <Link href="/" className="min-w-0 text-sm font-black tracking-tight text-app-text sm:text-base">
-            <span className="block truncate">Documentación API Ferretería ESNT</span>
+            <span className="block truncate">BaaS Ferreconst Docs</span>
           </Link>
           <div className="flex items-center gap-2">
             <ThemeToggle />
@@ -65,7 +65,7 @@ export function AppShell({ children }: AppShellProps) {
 
         <div className="hidden min-h-14 lg:grid lg:grid-cols-[340px_minmax(0,1fr)_auto] lg:items-center lg:px-0">
           <Link href="/" className="text-base font-black tracking-tight text-app-text lg:px-10">
-            Documentación API Ferretería ESNT
+            BaaS Ferreconst Docs
           </Link>
           <nav className="flex h-full items-center gap-7 text-sm font-bold text-app-text-muted lg:px-10">
             <TopNavLink href="/getting-started" label="Documentación" active={pathname.startsWith('/getting-started')} />
@@ -101,7 +101,7 @@ export function AppShell({ children }: AppShellProps) {
           >
             <div className="flex items-center justify-between gap-3 border-b border-app-border pb-4">
               <div className="min-w-0">
-                <div className="truncate text-sm font-black tracking-tight text-app-text">Documentación API Ferretería ESNT</div>
+                <div className="truncate text-sm font-black tracking-tight text-app-text">BaaS Ferreconst Docs</div>
                 <p className="mt-1 text-xs text-app-text-muted">Navegacion y referencia API</p>
               </div>
               <button

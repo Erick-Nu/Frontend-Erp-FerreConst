@@ -1,7 +1,7 @@
 import { EndpointReference } from '@/components/docs/EndpointReference'
 import { getModule } from '@/config/navigation'
 
-export const metadata = { title: 'Listar Alerts' }
+export const metadata = { title: 'Listar alertas' }
 
 export default function ListarAlertsPage() {
   const module = getModule('alert')!

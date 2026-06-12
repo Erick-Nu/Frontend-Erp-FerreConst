@@ -1,7 +1,7 @@
 import { EndpointReference } from '@/components/docs/EndpointReference'
 import { getModule } from '@/config/navigation'
 
-export const metadata = { title: 'Listar Stocks By Company' }
+export const metadata = { title: 'Listar stock por empresa' }
 
 export default function ListarStocksByCompanyPage() {
   const module = getModule('stock')!

@@ -1,7 +1,7 @@
 import { EndpointReference } from '@/components/docs/EndpointReference'
 import { getModule } from '@/config/navigation'
 
-export const metadata = { title: 'Actualizar Branch' }
+export const metadata = { title: 'Actualizar sucursal' }
 
 export default function ActualizarBranchPage() {
   const module = getModule('branch')!

@@ -1,7 +1,7 @@
 import { EndpointReference } from '@/components/docs/EndpointReference'
 import { getModule } from '@/config/navigation'
 
-export const metadata = { title: 'Crear User' }
+export const metadata = { title: 'Crear usuario' }
 
 export default function CrearUserPage() {
   const module = getModule('user')!

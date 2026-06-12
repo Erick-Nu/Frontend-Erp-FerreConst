@@ -1,7 +1,7 @@
 import { EndpointReference } from '@/components/docs/EndpointReference'
 import { getModule } from '@/config/navigation'
 
-export const metadata = { title: 'Crear Playment Method' }
+export const metadata = { title: 'Crear método de pago' }
 
 export default function CrearPlaymentMethodPage() {
   const module = getModule('playment-method')!

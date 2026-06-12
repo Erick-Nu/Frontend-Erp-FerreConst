@@ -1,7 +1,7 @@
 import { EndpointReference } from '@/components/docs/EndpointReference'
 import { getModule } from '@/config/navigation'
 
-export const metadata = { title: 'Listar Branches' }
+export const metadata = { title: 'Listar sucursales' }
 
 export default function ListarBranchesPage() {
   const module = getModule('branch')!

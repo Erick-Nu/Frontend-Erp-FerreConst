@@ -1,7 +1,7 @@
 import { EndpointReference } from '@/components/docs/EndpointReference'
 import { getModule } from '@/config/navigation'
 
-export const metadata = { title: 'Eliminar Config' }
+export const metadata = { title: 'Eliminar configuración' }
 
 export default function EliminarConfigPage() {
   const module = getModule('config')!

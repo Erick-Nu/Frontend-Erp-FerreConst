@@ -1,7 +1,7 @@
 import { EndpointReference } from '@/components/docs/EndpointReference'
 import { getModule } from '@/config/navigation'
 
-export const metadata = { title: 'Listar Configs' }
+export const metadata = { title: 'Listar configuraciones' }
 
 export default function ListarConfigsPage() {
   const module = getModule('config')!

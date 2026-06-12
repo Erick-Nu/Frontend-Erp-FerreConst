@@ -1,7 +1,7 @@
 import { EndpointReference } from '@/components/docs/EndpointReference'
 import { getModule } from '@/config/navigation'
 
-export const metadata = { title: 'Refresh Session' }
+export const metadata = { title: 'Renovar sesión' }
 
 export default function RefreshSessionPage() {
   const module = getModule('auth')!
