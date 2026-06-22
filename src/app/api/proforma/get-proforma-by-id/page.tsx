@@ -1,41 +1,41 @@
-import { EndpointReference } from '@/components/docs/EndpointReference'
+import { ProformaByIdReference } from '@/components/docs/ProformaByIdReference'
 import { getModule } from '@/config/navigation'
+import { getApiBaseUrl } from '@/config/public-env'
 
 export const metadata = { title: 'Obtener Proforma' }
 
 export default function ObtenerProformaPage() {
   const module = getModule('proforma')!
-  
+
   const endpoint = {
     slug: 'get-proforma-by-id',
-    title: 'Obtener Proforma',
+    title: 'Obtener proforma',
     method: 'GET' as const,
     path: '/proformas/:id',
-    summary: 'Obtiene una proforma específica por su identificador (prfmaid) para la empresa del usuario autenticado.',
-    status: 'documented' as const,
-    authentication: 'Requiere token JWT en el header: Authorization: Bearer <token>',
-    contentTypes: [],
-    contentType: '',
-    headers: [
-          { name: 'Authorization', type: 'string', required: true, description: 'Bearer token obtenido durante el login.' }
+    definition: 'Obtiene el detalle completo de una proforma por su identificador, dentro de la empresa del usuario autenticado, incluyendo emisor, receptor, detalle de items, totales y documento PDF.',
+    whenToUse: 'Se usa cuando la aplicación necesita cargar el contenido completo de una proforma para su visualización, revisión, impresión o previsualización. Al usarlo, el usuario obtiene la estructura completa de la proforma con todos sus datos resueltos.',
+    authentication: 'Requiere token JWT en el header `Authorization: Bearer <token>`. Permite acceso a usuarios con rol jefe o empleado. La empresa y el usuario autenticado deben estar activos.',
+    pathParams: [{ name: 'id', type: 'string', required: true, description: 'Identificador de la proforma.' }],
+    businessRules: [
+      { title: 'Solo un usuario con rol jefe o empleado puede consultar proformas.' },
+      { title: 'Solo permite consultar proformas de la empresa del usuario autenticado.' },
+      { title: 'La empresa del usuario autenticado debe estar activa.' },
+      { title: 'El usuario autenticado debe estar activo.' },
+      { title: 'La respuesta incluye la estructura completa del documento: emisor, receptor, detalle de items, totales y documento PDF.' },
+      { title: 'Este endpoint no modifica el estado ni el stock de la proforma.' },
     ],
-    pathParams: [
-
+    expectedErrors: [
+      { status: 401, title: 'No autorizado', message: 'No se envió un token JWT válido o el token no contiene información válida del usuario.' },
+      { status: 400, title: 'El id de proforma es requerido', message: 'No se envió el parámetro id en la ruta.' },
+      { status: 404, title: 'Proforma no encontrada', message: 'No existe una proforma con el id indicado dentro de la empresa del usuario autenticado.' },
+      { status: 500, title: 'La empresa no existe', message: 'La empresa asociada al usuario autenticado no fue encontrada.' },
+      { status: 500, title: 'La empresa no está activa', message: 'La empresa asociada al usuario autenticado está inactiva.' },
+      { status: 500, title: 'El usuario no existe', message: 'El usuario autenticado no fue encontrado dentro de su empresa.' },
+      { status: 500, title: 'El usuario no pertenece a la empresa', message: 'El usuario autenticado no pertenece a la empresa indicada por su sesión.' },
+      { status: 500, title: 'El usuario no está activo', message: 'El usuario autenticado está inactivo y no puede usar el sistema.' },
+      { status: 500, title: 'El usuario no es jefe o empleado', message: 'El usuario autenticado no tiene un rol permitido para consultar proformas.' },
     ],
-    queryParams: [
-
-    ],
-    body: [
-
-    ],
-    bodyGroups: [],
-    curlExample: `curl -X GET https://api.tudominio.com/proformas/:id \
-  -H "Authorization: Bearer <token>"`,
-    responses: [
-      {
-        status: 200,
-        label: 'OK',
-        example: `{
+    responseExample: `{
   "proforma": {
     "prfmaid": "66ff3afe-65bb-49f2-80cf-ae279b7fcf5b",
     "prfmaidentificador": "FE01-002-001-34",
@@ -114,29 +114,17 @@ export default function ObtenerProformaPage() {
       "docurl": "https://api.tudominio.com/uploads/proformas/1709639106001/FE01-002-001-34_2026-05-25.pdf"
     }
   }
-}`
-      }
-    ],
-    responseLanguage: 'json' as const,
-    businessRules: [
-    'Solo retorna proformas de la misma empresa del usuario autenticado.',
-    'La empresa del usuario autenticado debe estar activa.',
-    'El usuario autenticado debe estar activo.',
-    'Roles permitidos para este endpoint: jefe o empleado.',
-    'Si la proforma no existe o no pertenece al tenant del usuario, devuelve 404.'
-    ],
-    errors: [
-    { status: 401, title: 'token inválido o ausente' },
-    { status: 404, title: 'Proforma not found' },
-    { status: 400, title: 'Proforma id is required (si el parámetro no llega correctamente)' },
-    { status: 500, title: 'statusCode', message: 'Error' }
-    ],
+}`,
+    requestExample: `curl -X GET "${getApiBaseUrl()}/proformas/66ff3afe-65bb-49f2-80cf-ae279b7fcf5b" \
+  -H "Authorization: Bearer <token>"`,
     notes: [
-    'Este endpoint no modifica estado ni detalle; solo lectura.',
-    'detalle[].dprfmatipoitem se deriva de dprfmaesinventariable.',
-    'El PDF queda anidado en proforma.documento.'
-    ]
+      'Este endpoint no recibe query params ni body.',
+      'Solo devuelve proformas que pertenecen a la empresa del usuario autenticado.',
+      'La respuesta usa la misma estructura completa que POST /proformas.',
+      'detalle[].dprfmatipoitem se deriva del campo dprfmaesinventariable de cada item.',
+      'El documento PDF se devuelve con su nombre y URL pública.',
+    ],
   }
 
-  return <EndpointReference module={module} endpoint={endpoint} />
+  return <ProformaByIdReference moduleTitle={module.title} moduleSlug={module.slug} endpoint={endpoint} />
 }
