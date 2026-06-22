@@ -1,42 +1,58 @@
-import { EndpointReference } from '@/components/docs/EndpointReference'
+import { ProductListReference } from '@/components/docs/ProductListReference'
 import { getModule } from '@/config/navigation'
+import { getApiBaseUrl } from '@/config/public-env'
 
 export const metadata = { title: 'Listar productos' }
 
 export default function ListarProductsPage() {
   const module = getModule('product')!
-  
+
   const endpoint = {
     slug: 'get-products',
     title: 'Listar productos',
     method: 'GET' as const,
     path: '/products',
-    summary: 'Obtiene el listado paginado de productos de la empresa del usuario autenticado.',
+    definition: 'Lista productos de forma paginada, con búsqueda por código o nombre y filtro por estado, dentro de la empresa del usuario autenticado.',
+    whenToUse:
+      'Se usa cuando la aplicación necesita mostrar una tabla de productos, buscar por código o nombre, o filtrar por estado. Al usarlo, el usuario obtiene una página de resultados con el conteo total de productos de su empresa, incluyendo las relaciones anidadas de categoría, marca, proveedor y medida.',
     status: 'documented' as const,
-    authentication: 'Requiere token JWT en el header: Authorization: Bearer <token>',
-    contentTypes: [],
-    contentType: '',
-    headers: [
-          { name: 'Authorization', type: 'string', required: true, description: 'Bearer token obtenido durante el login.' }
-    ],
-    pathParams: [
-
-    ],
+    authentication:
+      'Requiere token JWT en el header `Authorization: Bearer <token>`. Permite acceso a usuarios con rol jefe o empleado. La empresa y el usuario autenticado deben estar activos.',
     queryParams: [
-          { name: 'page', type: 'string', required: true, description: 'número de página (entero positivo).' },
-          { name: 'pageSize', type: 'number', required: true, description: 'cantidad de registros por página (entero positivo).' }
+      { name: 'page', type: 'string', required: true, description: 'Número de página. Debe ser un entero positivo.' },
+      { name: 'pageSize', type: 'string', required: true, description: 'Cantidad de registros por página. Debe ser un entero positivo.' },
+      { name: 'search', type: 'string', required: false, description: 'Texto opcional para buscar por prdtocodigo o prdtonombre.' },
+      { name: 'status', type: 'string', required: false, description: 'Estado del producto. Solo acepta activo o inactivo.' },
     ],
-    body: [
-
+    businessRules: [
+      { title: 'Solo un usuario con rol jefe o empleado puede listar productos.' },
+      { title: 'Solo permite listar productos de la empresa del usuario autenticado.' },
+      { title: 'La empresa del usuario autenticado debe estar activa.' },
+      { title: 'El usuario autenticado debe estar activo.' },
+      { title: 'page y pageSize son obligatorios y deben ser enteros positivos.' },
+      { title: 'Si no se envía status, se excluyen los productos con estado eliminado.' },
+      { title: 'Si se envía status, solo acepta activo o inactivo.' },
+      { title: 'search busca coincidencias parciales en prdtocodigo y prdtonombre.' },
+      { title: 'La respuesta incluye las relaciones resueltas como objetos anidados (categoria, marca, proveedor, medida).' },
+      { title: 'El campo prdtoimagen se devuelve como URL pública completa.' },
     ],
-    bodyGroups: [],
-    curlExample: `curl -X GET https://api.tudominio.com/products \
-  -H "Authorization: Bearer <token>"`,
-    responses: [
-      {
-        status: 200,
-        label: 'OK',
-        example: `{
+    expectedErrors: [
+      { status: 401, title: 'No autorizado', message: 'No se envió un token JWT válido o el token no contiene información válida del usuario.' },
+      { status: 400, title: 'La búsqueda debe ser un texto', message: 'El query param search fue enviado como arreglo en lugar de texto.' },
+      { status: 400, title: 'El estado debe ser un texto', message: 'El query param status fue enviado como arreglo en lugar de texto.' },
+      { status: 400, title: 'El estado debe ser activo o inactivo', message: 'El query param status tiene un valor distinto de activo o inactivo.' },
+      { status: 500, title: 'La página debe ser un entero positivo', message: 'page no es un entero positivo o no fue enviado.' },
+      { status: 500, title: 'El tamaño de página debe ser un entero positivo', message: 'pageSize no es un entero positivo o no fue enviado.' },
+      { status: 500, title: 'La empresa no existe', message: 'La empresa asociada al usuario autenticado no fue encontrada.' },
+      { status: 500, title: 'La empresa no está activa', message: 'La empresa asociada al usuario autenticado está inactiva.' },
+      { status: 500, title: 'El usuario no existe', message: 'El usuario autenticado no fue encontrado dentro de su empresa.' },
+      { status: 500, title: 'El usuario no pertenece a la empresa', message: 'El usuario autenticado no pertenece a la empresa indicada por su sesión.' },
+      { status: 500, title: 'El usuario no puede acceder a otra empresa', message: 'El usuario autenticado intentó acceder a una empresa distinta a la suya.' },
+      { status: 500, title: 'El usuario no es jefe, empleado o administrador', message: 'El rol del usuario no está permitido para acceder al módulo de productos.' },
+      { status: 500, title: 'El usuario no es jefe o empleado', message: 'El usuario autenticado no tiene un rol permitido para listar productos.' },
+      { status: 500, title: 'El usuario no está activo', message: 'El usuario autenticado está inactivo y no puede usar el sistema.' },
+    ],
+    responseExample: `{
   "items": [
     {
       "prdtoid": "f8a0a2ab-9fbe-4fcf-b4d4-6888e0c4f410",
@@ -65,7 +81,7 @@ export default function ListarProductsPage() {
       "prdtoprecioventa": 165.99,
       "prdtostockminimo": 5,
       "prdtostockmaximo": 50,
-      "prdtoimagen": "https://api.tudominio.com/uploads/productos/product.png",
+      "prdtoimagen": "http://localhost:3000/uploads/productos/product.png",
       "prdtofchregistro": "2026-05-23T17:29:01.621Z",
       "prdtoestado": "activo"
     }
@@ -74,29 +90,16 @@ export default function ListarProductsPage() {
   "pageSize": 20,
   "totalItems": 5,
   "totalPages": 1
-}`
-      }
-    ],
-    responseLanguage: 'json' as const,
-    businessRules: [
-    'Solo retorna productos de la misma empresa del usuario autenticado.',
-    'La empresa del usuario autenticado debe estar activa.',
-    'El usuario autenticado debe estar activo.',
-    'Roles permitidos para este endpoint: jefe o empleado.',
-    'prdtoimagen en la respuesta se entrega como URL pública del backend.'
-    ],
-    errors: [
-    { status: 401, title: 'Token inválido o ausente' },
-    { status: 500, title: 'Page must be a positive integer', message: 'page inválido (no entero positivo)' },
-    { status: 500, title: 'Page size must be a positive integer', message: 'pageSize inválido (no entero positivo)' },
-    { status: 500, title: 'User is not jefe or empleado', message: 'Usuario sin rol permitido' },
-    { status: 500, title: 'User is not active', message: 'Usuario inactivo' },
-    { status: 500, title: 'Company is not active', message: 'Empresa inactiva' }
-    ],
+}`,
+    requestExample: `curl -X GET "${getApiBaseUrl()}/products?page=1&pageSize=20&search=taladro&status=activo" \
+  -H "Authorization: Bearer <token>"`,
     notes: [
-
-    ]
+      'search y status son query params opcionales.',
+      'Si no hay resultados para la página solicitada, items se devuelve como arreglo vacío.',
+      'El listado está restringido a la empresa del usuario autenticado.',
+      'La respuesta ya incluye las relaciones anidadas listas para usar en la interfaz.',
+    ],
   }
 
-  return <EndpointReference module={module} endpoint={endpoint} />
+  return <ProductListReference moduleTitle={module.title} moduleSlug={module.slug} endpoint={endpoint} />
 }
