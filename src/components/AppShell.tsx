@@ -243,6 +243,28 @@ function SidebarContent({
                         </Link>
                       )
                     })}
+                    {module.infoPages?.map((info) => {
+                      const href = `/api/${module.slug}/${info.slug}`
+                      const active = pathname === href
+
+                      return (
+                        <Link
+                          key={info.slug}
+                          href={href}
+                          onClick={onNavigate}
+                          className={`flex min-h-11 items-center gap-3 rounded-xl px-3 py-2 text-xs transition ${
+                            active
+                              ? 'bg-app-surface text-app-text'
+                              : 'text-app-text-muted hover:bg-app-surface hover:text-app-text-secondary'
+                          }`}
+                        >
+                          <svg className="h-4 w-4 shrink-0 text-app-text-dim" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM7 5h2v1H7V5zm0 2h2v4H7V7z" />
+                          </svg>
+                          <span className="min-w-0 truncate">{info.title}</span>
+                        </Link>
+                      )
+                    })}
                   </div>
                 ) : null}
               </div>
