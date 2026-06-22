@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { EndpointCard } from '@/components/EndpointCard'
 import { getModule, navigationModules } from '@/config/navigation'
@@ -34,6 +35,29 @@ export default async function ApiModulePage(props: { params: Promise<{ module: s
           <EndpointCard key={endpoint.slug} moduleSlug={module.slug} endpoint={endpoint} />
         ))}
       </div>
+      {module.infoPages && module.infoPages.length > 0 ? (
+        <section>
+          <h2 className="border-b border-app-border pb-3 text-xl font-black text-app-text">Información del módulo</h2>
+          <div className="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {module.infoPages.map((info) => (
+              <Link
+                key={info.slug}
+                href={`/api/${module.slug}/${info.slug}`}
+                className="block rounded-[1rem] border border-app-border bg-app-surface p-4 transition hover:border-app-border-hover hover:bg-app-surface-hover sm:p-5"
+              >
+                <div className="mb-3 flex items-center gap-2">
+                  <svg className="h-4 w-4 text-app-text-secondary" viewBox="0 0 16 16" fill="currentColor">
+                    <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM7 5h2v1H7V5zm0 2h2v4H7V7z" />
+                  </svg>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-app-text-secondary">Información</span>
+                </div>
+                <h3 className="text-base font-bold text-app-text">{info.title}</h3>
+                <p className="text-clamp-2 mt-1.5 text-sm leading-6 text-app-text-muted">{info.summary}</p>
+              </Link>
+            ))}
+          </div>
+        </section>
+      ) : null}
     </div>
   )
 }
