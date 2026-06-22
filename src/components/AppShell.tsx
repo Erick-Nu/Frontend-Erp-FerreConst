@@ -232,7 +232,7 @@ function SidebarContent({
                           key={endpoint.slug}
                           href={href}
                           onClick={onNavigate}
-                          className={`flex min-h-11 items-center gap-3 rounded-xl px-3 py-2 text-sm transition ${
+                          className={`flex min-h-11 items-center gap-3 rounded-xl px-3 py-2 text-xs transition ${
                             active
                               ? 'bg-app-surface text-app-text'
                               : 'text-app-text-muted hover:bg-app-surface hover:text-app-text-secondary'
