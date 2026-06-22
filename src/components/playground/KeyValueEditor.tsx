@@ -92,7 +92,7 @@ export function KeyValueEditor({
     <div className="space-y-2">
       {visiblePairs.map((pair, index) => (
         <Row
-          key={`${pair.key}-${pair.value}-${index}`}
+          key={index}
           index={index}
           pair={pair}
           keyPlaceholder={keyPlaceholder}
