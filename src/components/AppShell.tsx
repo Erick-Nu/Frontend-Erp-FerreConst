@@ -63,7 +63,7 @@ export function AppShell({ children }: AppShellProps) {
           </div>
         </div>
 
-        <div className="hidden min-h-14 lg:grid lg:grid-cols-[340px_minmax(0,1fr)_auto] lg:items-center lg:px-0">
+        <div className="hidden min-h-14 lg:grid lg:grid-cols-[280px_minmax(0,1fr)_auto] lg:items-center lg:px-0">
           <Link href="/" className="text-base font-black tracking-tight text-app-text lg:px-10">
             BaaS Ferreconst Docs
           </Link>
@@ -78,7 +78,7 @@ export function AppShell({ children }: AppShellProps) {
         </div>
       </header>
 
-      <div className="grid lg:grid-cols-[340px_minmax(0,1fr)]">
+      <div className="grid lg:grid-cols-[280px_minmax(0,1fr)]">
         <aside className="hidden border-r border-app-border bg-app-sidebar lg:sticky lg:top-14 lg:block lg:h-[calc(100vh-3.5rem)] lg:overflow-y-auto">
           <SidebarContent pathname={pathname} />
         </aside>
@@ -165,7 +165,7 @@ function SidebarContent({
   }, [activeModule])
 
   return (
-    <div className={compact ? 'px-1 pb-2' : 'px-10 py-8'}>
+      <div className={compact ? 'px-1 pb-2' : 'px-6 py-8'}>
       <div className="space-y-2 border-l border-app-border pl-4">
         <SidebarLink
           href="/getting-started/introduction"
