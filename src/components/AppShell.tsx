@@ -69,7 +69,8 @@ export function AppShell({ children }: AppShellProps) {
           </Link>
           <nav className="flex h-full items-center gap-7 text-sm font-bold text-app-text-muted lg:px-10">
             <TopNavLink href="/getting-started" label="Documentación" active={pathname.startsWith('/getting-started')} />
-            <TopNavLink href="/api" label="Referencia API" active={pathname.startsWith('/api')} />
+            <TopNavLink href="/api" label="Referencia API" active={pathname.startsWith('/api') && !pathname.startsWith('/api/playground')} />
+            <TopNavLink href="/api/playground" label="Probador" active={pathname.startsWith('/api/playground')} />
           </nav>
           <div className="flex items-center justify-end pr-10">
             <ThemeToggle />
@@ -126,7 +127,13 @@ export function AppShell({ children }: AppShellProps) {
               <MobileTopNavLink
                 href="/api"
                 label="Referencia API"
-                active={pathname.startsWith('/api')}
+                active={pathname.startsWith('/api') && !pathname.startsWith('/api/playground')}
+                onNavigate={() => setMobileMenuOpen(false)}
+              />
+              <MobileTopNavLink
+                href="/api/playground"
+                label="Probador de API"
+                active={pathname.startsWith('/api/playground')}
                 onNavigate={() => setMobileMenuOpen(false)}
               />
             </nav>
@@ -173,6 +180,12 @@ function SidebarContent({
           onNavigate={onNavigate}
         />
         <SidebarLink href="/api" label="Vista general" active={pathname === '/api'} onNavigate={onNavigate} />
+        <SidebarLink
+          href="/api/playground"
+          label="Probador de API"
+          active={pathname === '/api/playground'}
+          onNavigate={onNavigate}
+        />
       </div>
 
       <div className="mt-8 border-l border-app-border pl-4">
