@@ -1,41 +1,42 @@
-import { EndpointReference } from '@/components/docs/EndpointReference'
-import { getModule } from '@/config/navigation'
+import { StockByIdReference } from '@/components/docs/StockByIdReference'
+import { getApiBaseUrl } from '@/config/public-env'
 
 export const metadata = { title: 'Obtener stock' }
 
 export default function ObtenerStockPage() {
-  const module = getModule('stock')!
-  
   const endpoint = {
     slug: 'get-stock-by-id',
     title: 'Obtener stock',
     method: 'GET' as const,
     path: '/stocks/:id',
-    summary: 'Obtiene un stock por su identificador, limitado a la empresa del usuario autenticado.',
+    definition: 'Obtiene el detalle de un registro de stock por su identificador, dentro de la empresa del usuario autenticado, incluyendo las relaciones de sucursal y producto.',
+    whenToUse: 'Se usa cuando la aplicación necesita cargar los datos completos de un stock para una vista de detalle, un formulario de edición o una consulta de existencias. Al usarlo, el usuario obtiene los datos del stock con las relaciones resueltas de sucursal y producto.',
     status: 'documented' as const,
-    authentication: 'Requiere token JWT en el header: Authorization: Bearer <token>',
-    contentTypes: [],
-    contentType: '',
-    headers: [
-          { name: 'Authorization', type: 'string', required: true, description: 'Bearer token obtenido durante el login.' }
-    ],
+    authentication: 'Requiere token JWT en el header `Authorization: Bearer <token>`. Permite acceso a usuarios con rol jefe o empleado. La empresa y el usuario autenticado deben estar activos.',
     pathParams: [
-          { name: 'id', type: 'number', required: false, description: 'identificador del stock.' }
+      { name: 'id', type: 'string', required: true, description: 'Identificador del stock.' }
     ],
-    queryParams: [
-
+    businessRules: [
+      { title: 'Solo un usuario con rol jefe o empleado puede consultar stock.' },
+      { title: 'Solo permite consultar stock de la empresa del usuario autenticado.' },
+      { title: 'La empresa del usuario autenticado debe estar activa.' },
+      { title: 'El usuario autenticado debe estar activo.' },
+      { title: 'La respuesta incluye las relaciones resueltas de sucursal y producto.' },
     ],
-    body: [
-
+    expectedErrors: [
+      { status: 401, title: 'No autorizado', message: 'No se envió un token JWT válido o el token no contiene información válida del usuario.' },
+      { status: 400, title: 'El id de stock es requerido', message: 'No se envió el parámetro id en la ruta.' },
+      { status: 500, title: 'La empresa no existe', message: 'La empresa asociada al usuario autenticado no fue encontrada.' },
+      { status: 500, title: 'La empresa no está activa', message: 'La empresa asociada al usuario autenticado está inactiva.' },
+      { status: 500, title: 'El usuario no existe', message: 'El usuario autenticado no fue encontrado dentro de su empresa.' },
+      { status: 500, title: 'El usuario no pertenece a la empresa', message: 'El usuario autenticado no pertenece a la empresa indicada por su sesión.' },
+      { status: 500, title: 'El usuario no puede acceder a otra empresa', message: 'El usuario autenticado intentó acceder a una empresa distinta a la suya.' },
+      { status: 500, title: 'El usuario no es jefe, empleado o administrador', message: 'El rol del usuario no está permitido para acceder al módulo de stock.' },
+      { status: 500, title: 'El usuario no es jefe o empleado', message: 'El usuario autenticado no tiene un rol permitido para consultar stock.' },
+      { status: 500, title: 'El usuario no está activo', message: 'El usuario autenticado está inactivo y no puede usar el sistema.' },
+      { status: 500, title: 'Stock no encontrado', message: 'No existe un registro de stock con el id indicado dentro de la empresa del usuario autenticado.' },
     ],
-    bodyGroups: [],
-    curlExample: `curl -X GET https://api.tudominio.com/stocks/:id \
-  -H "Authorization: Bearer <token>"`,
-    responses: [
-      {
-        status: 200,
-        label: 'OK',
-        example: `{
+    responseExample: `{
   "stckid": "d5c2b3dc-1a80-46f6-b7ce-9894ea31fd87",
   "stckemid": "4ff4db6b-f18f-4ecd-83b3-b997fa77a01e",
   "sucursal": {
@@ -52,28 +53,15 @@ export default function ObtenerStockPage() {
   "stckfchregistro": "2026-05-23T23:21:23.477Z",
   "stckfchactualizacion": "2026-05-23T23:21:23.477Z",
   "stckestado": "activo"
-}`
-      }
-    ],
-    responseLanguage: 'json' as const,
-    businessRules: [
-    'Solo permite ver stocks de la misma empresa del usuario autenticado.',
-    'La empresa del usuario autenticado debe estar activa.',
-    'El usuario autenticado debe estar activo.',
-    'Roles permitidos para este endpoint: jefe o empleado.'
-    ],
-    errors: [
-    { status: 401, title: 'Token inválido o ausente' },
-    { status: 400, title: 'Stock id is required', message: 'id ausente o inválido' },
-    { status: 500, title: 'Stock not found', message: 'Stock no encontrado' },
-    { status: 500, title: 'User is not jefe or empleado', message: 'Usuario sin rol permitido' },
-    { status: 500, title: 'User is not active', message: 'Usuario inactivo' },
-    { status: 500, title: 'Company is not active', message: 'Empresa inactiva' }
-    ],
+}`,
+    requestExample: `curl -X GET "${getApiBaseUrl()}/stocks/d5c2b3dc-1a80-46f6-b7ce-9894ea31fd87" \
+  -H "Authorization: Bearer <token>"`,
     notes: [
-
+      'Este endpoint no recibe query params ni body.',
+      'Solo devuelve stock que pertenece a la empresa del usuario autenticado.',
+      'La respuesta incluye las relaciones anidadas de sucursal y producto.',
     ]
   }
 
-  return <EndpointReference module={module} endpoint={endpoint} />
+  return <StockByIdReference moduleTitle="Stock" moduleSlug="stock" endpoint={endpoint} />
 }
