@@ -16,6 +16,52 @@ type KeyValueEditorProps = {
 const inputClass =
   'min-w-0 flex-1 rounded-xl border border-app-border bg-app-code px-3 py-2.5 text-sm text-app-text placeholder:text-app-text-dim focus:border-app-border-hover focus:outline-none disabled:opacity-50'
 
+type RowProps = {
+  index: number
+  pair: KeyValuePair
+  keyPlaceholder: string
+  valuePlaceholder: string
+  disabled: boolean
+  onUpdate: (index: number, field: 'key' | 'value', value: string) => void
+  onRemove: (index: number) => void
+}
+
+function Row({ index, pair, keyPlaceholder, valuePlaceholder, disabled, onUpdate, onRemove }: RowProps) {
+  return (
+    <div className="flex flex-col gap-2 sm:flex-row sm:items-start">
+      <div className="flex flex-1 flex-col gap-2 sm:flex-row sm:gap-2">
+        <input
+          type="text"
+          value={pair.key}
+          onChange={(e) => onUpdate(index, 'key', e.target.value)}
+          placeholder={keyPlaceholder}
+          disabled={disabled}
+          className={inputClass}
+        />
+        <input
+          type="text"
+          value={pair.value}
+          onChange={(e) => onUpdate(index, 'value', e.target.value)}
+          placeholder={valuePlaceholder}
+          disabled={disabled}
+          className={`${inputClass} sm:flex-[2]`}
+        />
+      </div>
+      <button
+        type="button"
+        onClick={() => onRemove(index)}
+        disabled={disabled}
+        className="inline-flex h-10 w-10 shrink-0 items-center justify-center self-end rounded-xl border border-app-border text-app-text-muted transition hover:border-[var(--tone-error-border)] hover:text-[var(--tone-error)] disabled:opacity-50 sm:self-start sm:min-h-[2.625rem] sm:min-w-[2.625rem]"
+        aria-label="Eliminar"
+      >
+        <svg className="h-4 w-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M4 4l8 8M12 4l-8 8" />
+        </svg>
+      </button>
+    </div>
+  )
+}
+
 export function KeyValueEditor({
   pairs,
   onChange,
@@ -42,46 +88,19 @@ export function KeyValueEditor({
 
   const visiblePairs = pairs.filter((p) => p.key !== '' || p.value !== '')
 
-  function Row({ index, pair }: { index: number; pair: KeyValuePair }) {
-    return (
-      <div className="flex flex-col gap-2 sm:flex-row sm:items-start">
-        <div className="flex flex-1 flex-col gap-2 sm:flex-row sm:gap-2">
-          <input
-            type="text"
-            value={pair.key}
-            onChange={(e) => updatePair(index, 'key', e.target.value)}
-            placeholder={keyPlaceholder}
-            disabled={disabled}
-            className={inputClass}
-          />
-          <input
-            type="text"
-            value={pair.value}
-            onChange={(e) => updatePair(index, 'value', e.target.value)}
-            placeholder={valuePlaceholder}
-            disabled={disabled}
-            className={`${inputClass} sm:flex-[2]`}
-          />
-        </div>
-        <button
-          type="button"
-          onClick={() => removePair(index)}
-          disabled={disabled}
-          className="inline-flex h-10 w-10 shrink-0 items-center justify-center self-end rounded-xl border border-app-border text-app-text-muted transition hover:border-[var(--tone-error-border)] hover:text-[var(--tone-error)] disabled:opacity-50 sm:self-start sm:min-h-[2.625rem] sm:min-w-[2.625rem]"
-          aria-label="Eliminar"
-        >
-          <svg className="h-4 w-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M4 4l8 8M12 4l-8 8" />
-          </svg>
-        </button>
-      </div>
-    )
-  }
-
   return (
     <div className="space-y-2">
       {visiblePairs.map((pair, index) => (
-        <Row key={`${pair.key}-${pair.value}-${index}`} index={index} pair={pair} />
+        <Row
+          key={`${pair.key}-${pair.value}-${index}`}
+          index={index}
+          pair={pair}
+          keyPlaceholder={keyPlaceholder}
+          valuePlaceholder={valuePlaceholder}
+          disabled={disabled}
+          onUpdate={updatePair}
+          onRemove={removePair}
+        />
       ))}
 
       {showNew ? (
