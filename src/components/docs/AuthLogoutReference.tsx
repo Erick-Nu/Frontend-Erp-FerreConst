@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import type { FieldSpec } from '@/types/docs'
 import { replaceApiBaseUrl } from '@/config/public-env'
 import { CodeBlock } from './CodeBlock'
 import { FieldRow } from './FieldRow'
