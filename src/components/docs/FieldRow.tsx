@@ -2,11 +2,12 @@ import type { FieldSpec } from '@/types/docs'
 
 type FieldRowProps = {
   field: FieldSpec
+  compact?: boolean
 }
 
-export function FieldRow({ field }: FieldRowProps) {
+export function FieldRow({ field, compact = false }: FieldRowProps) {
   return (
-    <div className="border-t border-app-border py-6 first:border-t-0">
+    <div className={`border-t border-app-border first:border-t-0 ${compact ? 'py-4' : 'py-6'}`}>
       <div className="flex flex-wrap items-start gap-2 sm:items-center">
         <code className="break-all text-sm font-bold text-app-text sm:break-normal">{field.name}</code>
         <span className="rounded-md border border-app-border bg-app-surface px-2 py-1 text-xs font-bold text-app-text-secondary">{field.type}</span>
@@ -18,7 +19,7 @@ export function FieldRow({ field }: FieldRowProps) {
           <span className="rounded-md border border-app-border bg-app-surface px-2 py-1 text-xs font-bold text-app-text-muted">            opcional</span>
         )}
       </div>
-      <p className="mt-4 text-[15px] leading-7 text-app-text-secondary">{field.description}</p>
+      <p className={compact ? 'mt-2 text-[15px] leading-7 text-app-text-secondary' : 'mt-4 text-[15px] leading-7 text-app-text-secondary'}>{field.description}</p>
     </div>
   )
 }
