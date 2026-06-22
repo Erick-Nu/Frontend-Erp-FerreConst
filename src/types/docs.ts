@@ -26,6 +26,14 @@ export type ErrorSpec = {
   message?: string
 }
 
+export type BusinessRuleStatus = 'required' | 'optional'
+
+export type BusinessRuleSpec = {
+  title: string
+  status?: BusinessRuleStatus
+  description: string
+}
+
 export type EndpointDoc = {
   slug: string
   title: string
@@ -45,7 +53,8 @@ export type EndpointDoc = {
   responses: ResponseSpec[]
   responseLanguage?: 'json' | 'text'
   responseContentType?: string
-  businessRules?: string[]
+  businessRules?: Array<string | BusinessRuleSpec>
+  businessRulesDescription?: string
   errors?: ErrorSpec[]
   notes?: string[]
 }
@@ -55,4 +64,5 @@ export type ModuleDoc = {
   title: string
   description: string
   endpoints: EndpointDoc[]
+  infoPages?: Array<{ slug: string; title: string; summary: string }>
 }
