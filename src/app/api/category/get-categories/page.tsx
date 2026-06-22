@@ -1,42 +1,60 @@
-import { EndpointReference } from '@/components/docs/EndpointReference'
+import { CategoryListReference } from '@/components/docs/CategoryListReference'
 import { getModule } from '@/config/navigation'
+import { getApiBaseUrl } from '@/config/public-env'
 
 export const metadata = { title: 'Listar categorías' }
 
 export default function ListarCategoriesPage() {
   const module = getModule('category')!
-  
+
   const endpoint = {
     slug: 'get-categories',
     title: 'Listar categorías',
     method: 'GET' as const,
     path: '/categories',
-    summary: 'Obtiene el listado paginado de categorías de la empresa del usuario autenticado.',
+    definition: 'Lista categorías de forma paginada dentro de la empresa del usuario autenticado.',
+    whenToUse:
+      'Se usa cuando la aplicación necesita mostrar una tabla de categorías, buscar por nombre o descripción, o filtrar por estado. Al usarlo, el usuario obtiene una página de categorías y los datos de paginación necesarios para navegar el listado.',
     status: 'documented' as const,
-    authentication: 'Requiere token JWT en el header: Authorization: Bearer <token>',
-    contentTypes: [],
-    contentType: '',
-    headers: [
-          { name: 'Authorization', type: 'string', required: true, description: 'Bearer token obtenido durante el login.' }
-    ],
-    pathParams: [
-
-    ],
+    authentication: 'Requiere token JWT en el header `Authorization: Bearer <token>`.',
+    pathParams: [],
     queryParams: [
-          { name: 'page', type: 'string', required: true, description: 'número de página (entero positivo).' },
-          { name: 'pageSize', type: 'number', required: true, description: 'cantidad de registros por página (entero positivo).' }
+      { name: 'page', type: 'number', required: true, description: 'Número de página. Debe ser un entero positivo.' },
+      { name: 'pageSize', type: 'number', required: true, description: 'Tamaño de página. Debe ser un entero positivo.' },
+      { name: 'search', type: 'string', required: false, description: 'Texto opcional para buscar por nombre o descripción de categoría.' },
+      { name: 'status', type: 'string', required: false, description: 'Estado opcional. Solo acepta activo o inactivo.' },
     ],
-    body: [
-
+    businessRules: [
+      { title: 'Solo lista categorías de la empresa del usuario autenticado.' },
+      { title: 'La empresa del usuario autenticado debe estar activa.' },
+      { title: 'El usuario autenticado debe estar activo.' },
+      { title: 'El usuario autenticado debe tener rol jefe o empleado.' },
+      { title: 'page es un query param obligatorio y debe ser un entero positivo.' },
+      { title: 'pageSize es un query param obligatorio y debe ser un entero positivo.' },
+      { title: 'search es un query param opcional y debe enviarse como texto.' },
+      { title: 'search busca coincidencias por ctgnombre o ctgriadescripcion.' },
+      { title: 'status es un query param opcional y solo acepta activo o inactivo.' },
+      { title: 'Si status no se envía, se excluyen las categorías con estado eliminado.' },
+      { title: 'Las categorías se ordenan por fecha de registro descendente.' },
     ],
-    bodyGroups: [],
-    curlExample: `curl -X GET https://api.tudominio.com/categories \
-  -H "Authorization: Bearer <token>"`,
-    responses: [
-      {
-        status: 200,
-        label: 'OK',
-        example: `{
+    expectedErrors: [
+      { status: 401, title: 'No autorizado', message: 'No se envió un token JWT válido o el token no contiene información válida del usuario.' },
+      { status: 400, title: 'La búsqueda debe ser un texto', message: 'El parámetro search se envió más de una vez o con un formato no válido.' },
+      { status: 400, title: 'El estado debe ser un texto', message: 'El parámetro status se envió más de una vez o con un formato no válido.' },
+      { status: 400, title: 'El estado debe ser activo o inactivo', message: 'El parámetro status tiene un valor distinto de activo o inactivo.' },
+      { status: 500, title: 'La página debe ser un entero positivo', message: 'El parámetro page no se envió o no es un número entero mayor o igual a 1.' },
+      { status: 500, title: 'El tamaño de página debe ser un entero positivo', message: 'El parámetro pageSize no se envió o no es un número entero mayor o igual a 1.' },
+      { status: 500, title: 'La empresa no existe', message: 'La empresa asociada al usuario autenticado no fue encontrada.' },
+      { status: 500, title: 'La empresa no está activa', message: 'La empresa asociada al usuario autenticado está inactiva.' },
+      { status: 500, title: 'El usuario no existe', message: 'El usuario autenticado no fue encontrado dentro de su empresa.' },
+      { status: 500, title: 'El usuario no pertenece a la empresa', message: 'El usuario autenticado no pertenece a la empresa indicada por su sesión.' },
+      { status: 500, title: 'El usuario no puede acceder a otra empresa', message: 'El usuario autenticado intentó acceder a información de una empresa distinta a la suya.' },
+      { status: 500, title: 'El usuario no es jefe, empleado o administrador', message: 'El rol del usuario no está permitido para acceder al módulo de categorías.' },
+      { status: 500, title: 'El usuario no es jefe o empleado', message: 'El usuario autenticado no tiene un rol permitido para consultar categorías.' },
+      { status: 500, title: 'El usuario no está activo', message: 'El usuario autenticado está inactivo y no puede usar el sistema.' },
+      { status: 500, title: 'Error finding categories', message: 'Ocurrió un error interno al consultar el listado de categorías.' },
+    ],
+    responseExample: `{
   "items": [
     {
       "ctgriaid": "3c871a9e-0f6b-4ac9-a18f-0ecfe8b96d90",
@@ -49,30 +67,20 @@ export default function ListarCategoriesPage() {
   ],
   "page": 1,
   "pageSize": 20,
-  "totalItems": 5,
+  "totalItems": 1,
   "totalPages": 1
-}`
-      }
-    ],
-    responseLanguage: 'json' as const,
-    businessRules: [
-    'Solo retorna categorías de la misma empresa del usuario autenticado.',
-    'La empresa del usuario autenticado debe estar activa.',
-    'El usuario autenticado debe estar activo.',
-    'Solo un usuario con rol jefe o empleado puede listar categorías.'
-    ],
-    errors: [
-    { status: 401, title: 'Token inválido o ausente' },
-    { status: 500, title: 'Page must be a positive integer', message: 'page inválido (no entero positivo)' },
-    { status: 500, title: 'Page size must be a positive integer', message: 'pageSize inválido (no entero positivo)' },
-    { status: 500, title: 'User is not jefe or empleado', message: 'Usuario sin rol jefe o empleado' },
-    { status: 500, title: 'User is not active', message: 'Usuario inactivo' },
-    { status: 500, title: 'Company is not active', message: 'Empresa inactiva' }
-    ],
+}`,
+    requestExample: `curl -X GET "${getApiBaseUrl()}/categories?page=1&pageSize=20&search=herramientas&status=activo" \
+  -H "Authorization: Bearer <token>"`,
     notes: [
-
+      'Este endpoint no recibe parámetros de ruta ni body.',
+      'Los filtros se envían como query params: page, pageSize, search y status.',
+      'Envía siempre page y pageSize para evitar errores de validación.',
+      'Usa search para buscar por nombre o descripción de categoría.',
+      'Si no envías status, el listado devuelve categorías activas e inactivas, pero no eliminadas.',
+      'Si no hay coincidencias, items se devuelve como un arreglo vacío.',
     ]
   }
 
-  return <EndpointReference module={module} endpoint={endpoint} />
+  return <CategoryListReference moduleTitle={module.title} moduleSlug={module.slug} endpoint={endpoint} />
 }
