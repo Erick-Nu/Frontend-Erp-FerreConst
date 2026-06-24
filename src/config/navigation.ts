@@ -218,12 +218,3 @@ export function getModule(slug: string) {
   return navigationModules.find((module) => module.slug === slug) ?? null
 }
 
-export function getEndpoint(moduleSlug: string, endpointSlug: string) {
-  return getModule(moduleSlug)?.endpoints.find((endpoint) => endpoint.slug === endpointSlug) ?? null
-}
-
-export function getEndpointParams() {
-  return navigationModules.flatMap((module) =>
-    module.endpoints.map((endpoint) => ({ module: module.slug, endpoint: endpoint.slug }))
-  )
-}
