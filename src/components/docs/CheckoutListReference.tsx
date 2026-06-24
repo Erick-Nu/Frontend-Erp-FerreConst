@@ -4,8 +4,6 @@ import { MethodBadge } from '@/components/MethodBadge'
 import type { FieldSpec } from '@/types/docs'
 import { CodeBlock } from './CodeBlock'
 import { EndpointMethodPathBar } from './EndpointMethodPathBar'
-import { TryInPlaygroundButton } from '@/components/playground/TryInPlaygroundButton'
-import { ProbarButton } from './ProbarButton'
 import { FieldRow } from './FieldRow'
 
 type CheckoutListEndpoint = {
@@ -44,7 +42,6 @@ export function CheckoutListReference({ moduleTitle, moduleSlug, endpoint }: Che
               </div>
               <h1 className="text-3xl font-black tracking-tight text-app-text sm:text-4xl lg:text-5xl">{endpoint.title}</h1>
             </div>
-            <ProbarButton moduleSlug={moduleSlug} endpointSlug={endpoint.slug} />
           </div>
 
           <p className="mt-4 max-w-3xl text-[15px] leading-7 text-app-text-muted">{endpoint.definition}</p>

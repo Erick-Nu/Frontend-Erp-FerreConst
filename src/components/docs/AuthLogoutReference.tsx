@@ -4,8 +4,6 @@ import { replaceApiBaseUrl } from '@/config/public-env'
 import { CodeBlock } from './CodeBlock'
 import { FieldRow } from './FieldRow'
 import { EndpointMethodPathBar } from './EndpointMethodPathBar'
-import { TryInPlaygroundButton } from '@/components/playground/TryInPlaygroundButton'
-import { ProbarButton } from './ProbarButton'
 
 type LogoutEndpoint = {
   title: string
@@ -45,7 +43,6 @@ export function AuthLogoutReference({ moduleTitle, moduleSlug, endpoint }: AuthL
               </div>
               <h1 className="text-3xl font-black tracking-tight text-app-text sm:text-4xl lg:text-5xl">{endpoint.title}</h1>
             </div>
-            <ProbarButton moduleSlug={moduleSlug} endpointSlug={endpoint.slug} />
           </div>
 
           <p className="mt-4 max-w-3xl text-[15px] leading-7 text-app-text-muted">{endpoint.definition}</p>

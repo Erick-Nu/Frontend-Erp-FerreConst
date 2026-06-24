@@ -3,7 +3,6 @@ import { replaceApiBaseUrl } from '@/config/public-env'
 import { MethodBadge } from '@/components/MethodBadge'
 import { CodeBlock } from './CodeBlock'
 import { EndpointMethodPathBar } from './EndpointMethodPathBar'
-import { ProbarButton } from './ProbarButton'
 
 const healthResponse = `{
   "name": "esnt-backend-ferreteria",
@@ -25,7 +24,6 @@ export function HealthCheckReference() {
                 Health Check
               </h1>
             </div>
-            <ProbarButton moduleSlug="health" endpointSlug="health" />
           </div>
           <p className="mt-4 max-w-3xl text-[15px] leading-7 text-app-text-muted">
             Endpoint base de verificación del servicio que devuelve el nombre y la versión de la API.
